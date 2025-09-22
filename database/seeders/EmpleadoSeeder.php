@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EmpleadoSeeder extends Seeder
 {
@@ -13,8 +14,7 @@ class EmpleadoSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table ('empleados')->insert([
-            [
+     DB::table('empleados')->insert ([
             'Nombre' =>'Juan',
             'Apellido_paterno' => 'X',
             'Apellido_materno' => 'Y',
@@ -24,10 +24,8 @@ class EmpleadoSeeder extends Seeder
             'Email'=> 'juan@gmail.com',
             'RFC' => '5544875698AS',
             'Foto'=> '.',
-            ]   
-
-
-
-            ]);
-    }
+            'id_solicitud' => '1'
+      
+      ]);
 }
+};
