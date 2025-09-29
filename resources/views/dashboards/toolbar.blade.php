@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<!--begin::Head-->
-
 <head>
     <base href="../" />
     <title>SSVV</title>
@@ -33,7 +30,6 @@
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
-
 
 <body>
     <!--begin::App-->
