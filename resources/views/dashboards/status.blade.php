@@ -1,4 +1,5 @@
 @extends('layout')
+
 <!--begin::Row-->
 <div class="row gy-5 g-xl-10">
 	<!--begin::Col-->
@@ -651,3 +652,4 @@
 	<!--end::Col-->
 </div>
 <!--end::Row-->
+

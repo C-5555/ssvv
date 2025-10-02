@@ -108,8 +108,10 @@
 	</div>
 	<!--end::Card body-->
 </div>
+
 <!--end::details View-->
 
 <script src="{{ url ('assets/js/custom/utilities/products.js') }}"></script>
 <script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ url ('assets/js/custom/widgets.js') }}"></script>
+
