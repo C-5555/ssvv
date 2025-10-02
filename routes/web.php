@@ -14,15 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/ssvv', function () {
-    return view('ssvv.index');
+    return view('layout'); //cambiar por layout
 });
 
 Route::get('/ssvv/create', function () {
     return view('ssvv.create');
-});
-
-Route::get('/dashboards/calendario', function () {
-    return view('dashboards.calendar');
 });
 
 Route::get('ssvv/usuario', function () {
@@ -30,14 +26,14 @@ Route::get('ssvv/usuario', function () {
 });
 
 Route::get('ssvv/status', function () {
-    return view('dashboards/status');
+    return view('dashboards.status');
 });
 
-Route::get('ssvv/viaticos', function () {
+Route::get('/ssvv/viaticos', function () {
     return view('dashboards/viaticos');
 });
 
-Route::get('ssvv/vacaciones', function () {
+Route::get('/ssvv/vacaciones', function () {
     return view('dashboards/vacaciones');
 });
 
@@ -57,6 +53,4 @@ Route::get('/dashboards/dashboards', function () {
     return view('dashboards.mensajes');
 });
 
-Route::get('/mensajes', function () {
-    return view('ssvv.mensajes');
-});
+

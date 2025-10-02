@@ -33,7 +33,6 @@
 
 <body>
     <!--begin::sidebar menu-->
-
     <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
         <!--begin::Menu wrapper-->
         <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5"
@@ -328,7 +327,7 @@
             </div>
         </div>
     </div>
-    @endsection
+  
 
 
 

@@ -1,13 +1,12 @@
-@extends('ssvv.index')
+@extends('layout')
 
 <!--begin::details View-->
-
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 	<!--begin::Card header-->
 	<div class="card-header cursor-pointer">
 		<!--begin::Card title-->
 		<div class="card-title m-0">
-			<h3 class="fw-bold m-0">Profile Details</h3>
+			<h3 class="fw-bold m-0">Detalles de perfil</h3>
 		</div>
 		<!--end::Card title-->
 		<!--begin::Action-->
@@ -20,7 +19,7 @@
 		<!--begin::Row-->
 		<div class="row mb-7">
 			<!--begin::Label-->
-			<label class="col-lg-4 fw-semibold text-muted">Full Name</label>
+			<label class="col-lg-4 fw-semibold text-muted">Nombre completo</label>
 			<!--end::Label-->
 			<!--begin::Col-->
 			<div class="col-lg-8">
@@ -106,40 +105,9 @@
 			<!--begin::Label-->
 		</div>
 		<!--end::Input group-->
-
 	</div>
 	<!--end::Card body-->
 </div>
 <!--end::details View-->
 
-
-
-
-<!--begin::Javascript-->
-<script>var hostUrl = "assets/";</script>
-<!--begin::Global Javascript Bundle(used by all pages)-->
-<script src="assets/plugins/global/plugins.bundle.js"></script>
-<script src="assets/js/scripts.bundle.js"></script>
-<!--end::Global Javascript Bundle-->
-<!--begin::Vendors Javascript(used by this page)-->
-<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-<!--end::Vendors Javascript-->
-<!--begin::Custom Javascript(used by this page)-->
-<script src="assets/js/custom/pages/user-profile/general.js"></script>
-<script src="assets/js/widgets.bundle.js"></script>
-<script src="assets/js/custom/widgets.js"></script>
-<script src="assets/js/custom/apps/chat/chat.js"></script>
-<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="assets/js/custom/utilities/modals/offer-a-deal/type.js"></script>
-<script src="assets/js/custom/utilities/modals/offer-a-deal/details.js"></script>
-<script src="assets/js/custom/utilities/modals/offer-a-deal/finance.js"></script>
-<script src="assets/js/custom/utilities/modals/offer-a-deal/complete.js"></script>
-<script src="assets/js/custom/utilities/modals/offer-a-deal/main.js"></script>
-<script src="assets/js/custom/utilities/modals/users-search.js"></script>
-<!--end::Custom Javascript-->
-<!--end::Javascript-->
-</body>
-<!--end::Body-->
-
-</html>
+<script src="{{ url ('assets/js/custom/utilities/products.js') }}"></script>
