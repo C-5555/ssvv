@@ -1022,4 +1022,6 @@
 <script src="{{ url ('assets/js/custom/utilities/modals/new-target.js') }} "></script>
 <script src="{{ url ('assets/js/custom/utilities/modals/users-search.js') }} "></script>
 <!--end::Custom Javascript-->
+</body>
+</html>
 
