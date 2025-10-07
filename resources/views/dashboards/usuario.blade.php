@@ -1,5 +1,5 @@
-@extends('layout')
-
+@extends('layout2')
+@section('content')
 <!--begin::details View-->
 <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 	<!--begin::Card header-->
@@ -111,7 +111,9 @@
 
 <!--end::details View-->
 
+
 <script src="{{ url ('assets/js/custom/utilities/products.js') }}"></script>
 <script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ url ('assets/js/custom/widgets.js') }}"></script>
 
+@endsection

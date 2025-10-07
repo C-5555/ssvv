@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/ssvv', function () {
-    return view('layout'); //cambiar por layout
+    return view('layout2'); //cambiar por layout
 });
 
 Route::get('/ssvv/create', function () {

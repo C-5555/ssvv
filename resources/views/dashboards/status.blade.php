@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout2')
 
 <!--begin::Row-->
 <div class="row gy-5 g-xl-10">
