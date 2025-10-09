@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Empleado;
+
 
 class EmpleadoSeeder extends Seeder
 {
@@ -13,19 +15,18 @@ class EmpleadoSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-     DB::table('empleados')->insert ([
-            'Nombre' =>'Juan',
-            'Apellido_paterno' => 'X',
-            'Apellido_materno' => 'Y',
-            'id_departamento' => '4', 
-            'Puesto'=> 'Supervisor',
-            'Fecha_ingreso' => '22-06-2024',
-            'Email'=> 'juan@gmail.com',
-            'RFC' => '5544875698AS',
-            'Foto'=> '.',
-            'id_solicitud' => '1'
-      
-      ]);
-}
+
+        Empleado::create([
+           'nombre' =>'Juan',
+                'apellido_paterno' => 'X',
+                'apellido_materno' => 'Y',
+                'id_departamento' => '4', 
+                'puesto'=> 'Supervisor',
+                'fecha_ingreso' => '22-06-2024',
+                'email'=> 'juan@gmail.com',
+                'rfc' => '5544875698AS',
+                'foto'=> '.',
+                'id_solicitud' => '1'
+        ]);
+    }
 };

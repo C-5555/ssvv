@@ -33,6 +33,9 @@
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if ( localStorage.getItem("data-theme") !== null ) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }
 		</script>
 		<!--end::Theme mode setup on page load-->
+
+		
+<!---inicio toolbar-->	
 		<!--begin::App-->
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 			<!--begin::Page-->
@@ -42,7 +45,6 @@
 					<!--begin::Header container-->
 					<div class="app-container container-fluid d-flex align-items-stretch justify-content-between"
 						id="kt_app_header_container">
-
 						<!--begin::sidebar mobile toggle-->
 						<div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show sidebar menu">
 							<div class="btn btn-icon btn-active-color-primary w-35px h-35px"
@@ -565,6 +567,9 @@
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Header-->
+<!---Fin toolbar-->	
+
+<!---inicio sidebar-->				
 				<!--begin::Wrapper-->
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 					<!--begin::Sidebar-->
@@ -706,18 +711,6 @@
 												</a>
 												<!--end:Menu link-->
 											</div>
-											<!--begin:Menu item-->
-											<div class="menu-item">
-												<!--begin:Menu link-->
-												<a class="menu-link" href="/ssvv/public/ssvv/viaticos"> 
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-													<span class="menu-title">Respuesta</span>
-												</a>
-												<!--end:Menu link-->
-											</div>
-											<!--end:Menu item-->
 										</div>
 										<!--end:Menu sub-->
 									</div>
@@ -898,33 +891,33 @@
 							<!--end::Content-->
 						</div>
 						<!--end::Content wrapper-->
-						<!--begin::Footer-->
-						<div id="kt_app_footer" class="app-footer">
-							<!--begin::Footer container-->
-							<div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
-								<!--begin::Copyright-->
-								<div class="text-dark order-2 order-md-1">
-									<span class="text-muted fw-semibold me-1">2022&copy;</span>
-									<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
+						<footer class="footer">
+							<div class="container-fluid">
+								<div class="row text-muted">
+									<div class="col-6 text-start">
+										<p class="mb-0">
+											<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>SAF</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Secretaria de Administración y Finanzas</strong></a>
+										</p>
+									</div>
+									<div class="col-6 text-end">
+										<ul class="list-inline">
+											<li class="list-inline-item">
+												<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+											</li>
+											<li class="list-inline-item">
+												<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+											</li>
+											<li class="list-inline-item">
+												<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+											</li>
+											<li class="list-inline-item">
+												<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+											</li>
+										</ul>
+									</div>
 								</div>
-								<!--end::Copyright-->
-								<!--begin::Menu-->
-								<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-									<li class="menu-item">
-										<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-									</li>
-									<li class="menu-item">
-										<a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
-									</li>
-									<li class="menu-item">
-										<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
-									</li>
-								</ul>
-								<!--end::Menu-->
 							</div>
-							<!--end::Footer container-->
-						</div>
-						<!--end::Footer-->
+						</footer>
 					</div>
 					<!--end:::Main-->
 				</div>

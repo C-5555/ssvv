@@ -1,13 +1,13 @@
 @extends('layout2')
-
+@section('content')
 <!--begin::Row-->
-<div class="row gy-5 g-xl-10">
+<div class="row gy-5 g-xl-1">										
 	<!--begin::Col-->
-	<div class="col-xl-12 col-xxl-8 mb-5 mb-xl-10">
+	<div class="col-xl-30 col-xxl-8 mb-5 mb-xl-10">
 		<!--begin::Table Widget 3-->
-		<div class="card card-flush h-xl-100">
+		<div class="card card-flush h-xl-10">
 			<!--begin::Card header-->
-			<div class="card-header py-7">
+			<div class="card-header py-4">
 				<!--begin::Tabs-->
 				<div class="card-title pt-3 mb-0 gap-4 gap-lg-10 gap-xl-15 nav nav-tabs border-bottom-0" data-kt-table-widget-3="tabs_nav">
 					<!--begin::Tab item-->
@@ -29,7 +29,7 @@
 			</div>
 			<!--end::Card header-->
 			<!--begin::Card body-->
-			<div class="card-body pt-1">
+			<div class="card-body pt-15 ">
 				<!--begin::Sort & Filter-->
 				<div class="d-flex flex-stack flex-wrap gap-4">
 					<!--begin::Sort-->
@@ -649,7 +649,8 @@
 		</div>
 		<!--end::Table Widget 3-->
 	</div>
-	<!--end::Col-->
-</div>
-<!--end::Row-->
-
+	<!--end::Col-->									
+</div>									
+<!--end::Row-->																		
+							
+@endsection
