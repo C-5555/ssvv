@@ -1,5 +1,5 @@
-@extends('layout')
+@extends ('layout')
 
 @section ('content1')
-- Viáticos
+- Lista roles
 @endsection

@@ -1,4 +1,9 @@
-@extends('layout2')
+@extends('layout')
+
+@section ('content1')
+- Status
+@endsection
+
 @section('content')
 <!--begin::Row-->
 <div class="row gy-5 g-xl-1">										

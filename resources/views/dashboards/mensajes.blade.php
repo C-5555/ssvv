@@ -1,4 +1,8 @@
-@extends ('layout2')
+@extends ('layout')
+
+@section ('content1')
+- Mensajes
+@endsection
 <!--begin::Content-->
 @section('content')
 <div id="kt_app_content" class="app-content flex-column-fluid">

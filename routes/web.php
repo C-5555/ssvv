@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Rutas de vistas
 Route::get('/ssvv', function () {
-    return view('layout2'); //cambiar por layout
+    return view('ssvv.index'); //cambiar por layout
 });
 
 Route::get('/ssvv/create', function () {
@@ -22,7 +23,7 @@ Route::get('/ssvv/create', function () {
 });
 
 Route::get('ssvv/usuario', function () {
-    return view('dashboards/usuario');
+    return view('dashboards.usuario');
 });
 
 Route::get('ssvv/status', function () {
@@ -30,27 +31,34 @@ Route::get('ssvv/status', function () {
 });
 
 Route::get('/ssvv/viaticos', function () {
-    return view('dashboards/viaticos');
+    return view('dashboards.viaticos');
 });
 
 Route::get('/ssvv/vacaciones', function () {
-    return view('dashboards/vacaciones');
+    return view('dashboards.vacaciones');
 });
 
 Route::get('ssvv/mensajes', function () {
-    return view('dashboards/mensajes');
+    return view('dashboards.mensajes');
 });
 
 Route::get('/ssvv/dashboard', function () {
     return view('ssvv.index');
 });
 
-Route::get('/ssvv/dashboard', function () {
-    return view('dashboards.mensajes');
+Route::get('ssvv/lista', function () {
+    return view('dashboards.listaUsuarios');
 });
 
-Route::get('/dashboards/dashboards', function () {
-    return view('dashboards.mensajes');
+Route::get('ssvv/vista', function () {
+    return view('dashboards.vistaUsuario');
 });
 
+Route::get('ssvv/roles', function () {
+    return view('dashboards.listaRoles');
+});
 
+//Rutas de controlador 
+Route::get('/admin/ajax/data', [usersController::class, 'getUsers'])->name('ajaxroute');
+
+Route::match(['get', 'put'], '/admin/users/edit/{encryptedId}', [usersController::class, 'edit']);
