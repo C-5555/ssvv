@@ -25,6 +25,59 @@ h1 {
     color: #333;
 }
 
+
+.header-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.header-section h1 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.btn-create {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 0;
+}
+
+.btn-create:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-create:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .header-section {
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        position: static;
+    }
+}
+
+
+
 .controls {
     display: flex;
     justify-content: space-between;

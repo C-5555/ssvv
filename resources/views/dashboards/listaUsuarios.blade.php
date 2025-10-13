@@ -8,7 +8,12 @@
 @endsection
  @section('content')
     <div class="container">
-        <h1>Usuarios</h1>
+        <div class="header-section">
+            <h1>Usuarios</h1>
+            <button class="btn-create" id="createUserBtn">
+                <i class="fas fa-plus"></i> Crear Usuario
+            </button>
+        </div>
         
         <!-- Controles -->
         <div class="controls">
