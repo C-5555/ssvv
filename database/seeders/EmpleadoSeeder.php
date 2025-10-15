@@ -26,6 +26,7 @@ class EmpleadoSeeder extends Seeder
                 'email'=> 'juan@gmail.com',
                 'rfc' => '5544875698AS',
                 'foto'=> '.',
+                'status' => 'Inactivo',
                 'id_solicitud' => '1'
         ]);
     }

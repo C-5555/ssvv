@@ -21,6 +21,7 @@ class Empleado extends Model
         'email',
         'rfc',
         'foto',
+        'status',
         'id_solicitud'
 
     ];

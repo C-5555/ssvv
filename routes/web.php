@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpleadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +59,12 @@ Route::get('ssvv/roles', function () {
     return view('dashboards.listaRoles');
 });
 
-//Rutas de controlador 
-Route::get('/admin/ajax/data', [usersController::class, 'getUsers'])->name('ajaxroute');
 
-Route::match(['get', 'put'], '/admin/users/edit/{encryptedId}', [usersController::class, 'edit']);
+//Rutas de controlador 
+//Route::get('/admin/ajax/data', [usersController::class, 'getUsers'])->name('ajaxroute');
+
+Route::match(['get', 'put'], '/admin/users/edit/{encryptedId}', [EmpleadoController::class, 'edit']);
+
+Route::get('ssvv/lista', [EmpleadoController::class, 'index']); 
+
+Route::post('ssvv/store', [EmpleadoController::class, 'store']);

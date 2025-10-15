@@ -1,8 +1,15 @@
-Formulario de creación de usuario
+@extends('layout')
 
-<form action="{{ url ('/usuario')}}" method = "post" enctype="multipart/form-data" >
-@csrf 
-@include ('ssvv._form',['modo'=>'Crear'])
+@section('content1')
+- Formulario de creación de usuario
+@endsection
 
+
+@section('content')
+<form action="{{ url('ssvv/store') }}" method="post" enctype="multipart/form-data" >
+    @csrf 
+    @method('POST')
+    @include('ssvv._form',['modo'=>'Crear'])
 
 </form>
+@endsection

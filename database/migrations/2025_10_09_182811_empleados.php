@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email',50);
             $table->string('rfc',13);
             $table->string('foto')->nullable();
+            $table->boolean('status')->default(true); 
             $table->foreignId('id_solicitud');
             $table->timestamps();
         });
