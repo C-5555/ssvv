@@ -56,10 +56,6 @@ class EmpleadoController extends Controller
         $datos_empleado->fecha_ingreso =$request->fecha_ingreso;
         $datos_empleado->email=$request->email;
         $datos_empleado->rfc =$request->rfc;
-
-          
-        
-        
         $datos_empleado->status = $request->status;
         //dd($request -> all()); 
         if($request->hasFile('foto')){

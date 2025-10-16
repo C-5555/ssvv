@@ -14,18 +14,20 @@
 	<meta property="og:url" content="{{ url('https://keenthemes.com/metronic') }}" />
 	<meta property="og:site_name" content="Keenthemes | Metronic" />
 	<link rel="canonical" href="{{ url('https://preview.keenthemes.com/metronic8') }}" />
-	 <link rel="icon" type="image/x-icon" href="{{ url('assets/media/logos/favicon.ico') }}" />
+	<link rel="icon" type="image/x-icon" href="{{ url('assets/media/logos/favicon.ico') }}" />
+	<link rel="stylesheet" href="{{ url('https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css') }}" />
+	 
 	<!--begin::Fonts-->
 	<link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700') }}" />
 	<!--end::Fonts-->
 	<!--begin::Vendor Stylesheets(used by this page)-->
-	<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}"  rel="stylesheet" type="text/css" />
 	<!--end::Vendor Stylesheets-->
+	
 	<!--begin::Global Stylesheets Bundle(used by all pages)-->
 	<link href="{{ url('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ url('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<!--end::Global Stylesheets Bundle-->
-	@yield('styles')
+	<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -948,11 +950,12 @@
 <!--<script> var hostUrl = '{{-- hostUrl("assets/") --}}' </script>-->
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="{{ url('assets/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ url('assets/js/scripts.bundle.js') }}"></script>
+
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used by this page)-->
 <script src="{{ url('https://cdn.amcharts.com/lib/5/index.js') }}"></script>
-<script src="{{ url('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
+<script src="{{ url('https://cdn.datatables.net/2.3.4/js/dataTables.js') }}"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
 <script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>

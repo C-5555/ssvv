@@ -1,8 +1,9 @@
 @extends('layout')
 
 @section('styles')
-<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
 @endsection
+
 @section ('content1')
 - Lista de Usuarios
 @endsection
@@ -15,20 +16,9 @@
             <h1>Usuarios</h1>
                 
         </div>
-        
-        <!-- Controles -->
-        <div class="controls">
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <select id="rowsPerPage">
-                <option value="5">5 filas</option>
-                <option value="10" selected>10 filas</option>
-                <option value="25">25 filas</option>
-                <option value="50">50 filas</option>
-            </select>
-        </div>
 
         <!-- Tabla -->
-        <table id="tablaUsuarios">
+        <table id="tablaUsuarios" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th data-sort="foto">Foto</th>
@@ -51,7 +41,7 @@
                 
                         <td>
                             @if (!empty($empleados->foto))
-                                <img src="{{ asset('storage/' . $empleados->foto) }}" width="100" alt="">
+                                <img src="{{ url('storage/app/public/uploads/' . $empleados->foto) }}" width="100" alt="">
                             @endif
                         </td>
 
@@ -80,14 +70,9 @@
             </tbody>
         </table>
 
-        <!-- Paginación -->
-        <div class="pagination">
-            <button id="prevPage">Anterior</button>
-            <span id="pageInfo">Página 1 de 1</span>
-            <button id="nextPage">Siguiente</button>
-        </div>
-    </div>
+        
 @endsection
+
 @section('scripts')
-<script src="{{ URL::asset('js/usuarios/usuarios.js')}}" type="text/javascript"></script>
+<script src="{{ url('assets/js/usuarios/usuarios.js') }}"></script>
 @endsection
