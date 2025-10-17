@@ -12,7 +12,6 @@
     @include('ssvv._form',['modo'=>'Crear'])
 
 </form>
-<script src="{{ url('assets/js/scripts.bundle.js') }}"></script>
 @endsection
 
 

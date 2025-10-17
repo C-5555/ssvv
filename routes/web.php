@@ -7,7 +7,7 @@ use App\Http\Controllers\EmpleadoController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+|   
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
@@ -61,7 +61,7 @@ Route::get('ssvv/roles', function () {
 
 
 //Rutas de controlador 
-//Route::get('/admin/ajax/data', [usersController::class, 'getUsers'])->name('ajaxroute');
+Route::get('/ssvv/ajax/data', [EmpleadoController::class, 'getEmpleado'])->name('ajaxroute');
 
 Route::match(['get', 'put'], '/admin/users/edit/{encryptedId}', [EmpleadoController::class, 'edit']);
 

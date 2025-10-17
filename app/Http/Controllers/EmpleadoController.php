@@ -5,9 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Crypt;
 
 class EmpleadoController extends Controller
 { 
+    public function getEmpleado()
+    {
+        $empleado = Empleado::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'id_departamento', 'puesto', 'fecha_ingreso', 'email', 'rfc', 'status')
+            ->get()
+            ->map(function ($empleado) {
+                return [
+                    'id' => $empleado->id,
+                    'nombre' => $empleado->nombre,
+                    'apellido_paterno' => $empleado->apellido_paterno,
+                    'apellido_materno' =>$empleado->apellido_materno,
+                    'id_departamento' => $empleado->id_departamento,
+                    'puesto' => $empleado->puesto,
+                    'fecha_ingreso' => $empleado->fecha_ingreso,
+                    'email' => $empleado->email,
+                    'rfc' => $empleado->rfc,
+                    'status' => $empleado->status ? 'Activo' : 'Inactivo',
+                ];
+            });
+        return response()->json(['data' => $empleado]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -35,11 +57,6 @@ class EmpleadoController extends Controller
      */
      public function store(Request $request)
     {
-        //
-        $valided =$request->validate([
-            'status' => 'sometimes|boolean'
-        ]);
-
        //$datos_empleado = $request->all();
        
         $datos_empleado = new Empleado; 
@@ -56,7 +73,7 @@ class EmpleadoController extends Controller
         $datos_empleado->fecha_ingreso =$request->fecha_ingreso;
         $datos_empleado->email=$request->email;
         $datos_empleado->rfc =$request->rfc;
-        $datos_empleado->status = $request->status;
+        $datos_empleado->status = true;
         //dd($request -> all()); 
         if($request->hasFile('foto')){
             $datos_empleado ['foto']=$request->file('foto')->store('uploads', 'public');
@@ -91,7 +108,7 @@ class EmpleadoController extends Controller
     {
         //
         $empleado=Empleado::findOrFail($id );
-        dd ($empleado);
+        //dd ($empleado);
         return view ('ssvv.lista', compact('empleado') ); 
 
     }

@@ -21,7 +21,7 @@
         <table id="tablaUsuarios" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th data-sort="foto">Foto</th>
+                    <th>Id</th>
                     <th data-sort="nombre">Nombre</th>
                     <th data-sort="apellido_paterno">Apellido Paterno</th>
                     <th data-sort="apellido_materno">Apellido Materno</th>
@@ -36,15 +36,9 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                @foreach ($empleado as $empleados)
+               @foreach ($empleado as $empleados)
                     <tr class="table-secondary">
-                
-                        <td>
-                            @if (!empty($empleados->foto))
-                                <img src="{{ url('storage/app/public/uploads/' . $empleados->foto) }}" width="100" alt="">
-                            @endif
-                        </td>
-
+                        <td>{{ $empleados->id }}</td>
                         <td>{{$empleados->nombre}}</td>
                         <td>{{$empleados->apellido_paterno}}</td>
                         <td>{{$empleados->apellido_materno}}</td>
@@ -63,7 +57,6 @@
                         </td>
                         <td>
                             <a class="btn btn-primary">Ver</a> <a class="btn btn-primary">Editar</a>  <button class="btn btn-danger">Eliminar</button>                                                      
-
                         </td>
                     </tr>
                 @endforeach

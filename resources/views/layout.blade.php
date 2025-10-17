@@ -958,6 +958,7 @@
 <script src="{{ url('https://cdn.datatables.net/2.3.4/js/dataTables.js') }}"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
+<script src="{{ url('assets/js/scripts.bundle.js') }}"></script>
 <script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ url ('assets/js/custom/widgets.js') }} "></script>
 <script src="{{ url ('assets/js/custom/utilities/modals/create-app.js') }} "></script>

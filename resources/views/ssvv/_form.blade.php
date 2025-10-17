@@ -28,12 +28,6 @@
     <label for="rfc"> RFC </label>
     <input type="text" name="rfc" value="{{ isset($empleados ->rfc)?$empleados ->rfc:'' }}" id="rfc"> <br>
 
-    <label for="foto"> Foto</label>
-        @if(isset($empleados->foto))  
-        <img src="{{asset ('storage').'/'.$empleados->foto}}" width="100" alt=""> 
-        @endif
-    <input type="file" name="foto" value="" id="foto"><br><br>
-
     <input type="hidden" name="status" value= 0>
 
 

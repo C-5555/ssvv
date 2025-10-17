@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 
 class Empleado extends Model
@@ -20,13 +22,23 @@ class Empleado extends Model
         'fecha_ingreso',
         'email',
         'rfc',
-        'foto',
         'status',
         'id_solicitud'
 
     ];
 
 	public $timestamps = true;
+
+    protected $appends = ['encrypted_id'];
+
+    public function usuario(){
+        return $this->hasMany('App\Models\User', 'id_empleado');
+    }
+
+    public function getEncryptedIdAttribute()
+    {
+        return Crypt::encryptString($this->id);
+    }
 
     
 }
