@@ -162,14 +162,13 @@ button:disabled {
     font-weight: bold;
 }
 
-.btn-action {
-    padding: 4px 8px;
-    margin: 0 2px;
-    font-size: 12px;
+.btn-view {
+    background-color: #4482edd2;
+    color: black;
 }
 
 .btn-edit {
-    background-color: #18d200;
+    background-color: #4482ed7e;
     color: black;
 }
 

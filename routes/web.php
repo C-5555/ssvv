@@ -58,6 +58,9 @@ Route::get('ssvv/vista', function () {
 Route::get('ssvv/roles', function () {
     return view('dashboards.listaRoles');
 });
+Route::get('ssvv/ver', function () {
+    return view('ssvv.show');
+});
 
 
 //Rutas de controlador 

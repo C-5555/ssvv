@@ -48,21 +48,18 @@
                         <td>{{$empleados->email}}</td>
                         <td>{{$empleados->rfc}}</td>    
 
-                        <td>
+                       <!--  <td>
                             @if ($empleados->status)
                                 <span class= "text-success"> ✓ Activo </span>
                             @else
                                 <span class="text-danger"> Inactivo </span>
                             @endif 
-                        </td>
-                        <td>
-                            <a class="btn btn-primary">Ver</a> <a class="btn btn-primary">Editar</a>  <button class="btn btn-danger">Eliminar</button>                                                      
-                        </td>
+                        </td> -->
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
+    </div>
         
 @endsection
 

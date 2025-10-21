@@ -32,9 +32,9 @@ $(document).ready(function () {
                 data: 'id',
                 render: function (data) {
                     return `
-                        <a class="btn btn-primary">Ver</a> 
-                        <a class="btn btn-primary">Editar</a>  
-                        <button class="btn btn-danger">Eliminar</button>
+                        <button class="btn btn-view" id="viewUserBtn" onclick="window.location.href='{{ url('ssvv/ver') }}'" >
+                        <button class="btn btn-edit">Editar</button>
+                        <button class="btn btn-danger">Eliminar</button>   
                     `;
                 }
             }
