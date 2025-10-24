@@ -1,25 +1,17 @@
 @extends('layout')
-
-@section('styles')
-<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
-@endsection
-
 @section ('content1')
 - Lista de Usuarios
 @endsection
 @section('content')
     <div class="container">
-        <div class="header-section">
-            <button class="btn-create" id="createUserBtn" onclick="window.location.href='{{ url('ssvv/create') }}'" >
-                    <i class="fas fa-plus"></i> Crear Usuario
-            </button>
+        <div class="header-section">          
             <h1>Usuarios</h1>
-                
-        </div>
+            <a href="{{ url('ssvv/create') }}" class="btn btn-create"> <i class="fas fa-plus"></i> Crear usuario</a>        </div>
 
         <!-- Tabla -->
         <table id="tablaUsuarios" class="display" style="width:100%">
             <thead>
+
                 <tr>
                     <th>Id</th>
                     <th data-sort="nombre">Nombre</th>
@@ -38,7 +30,7 @@
             <tbody id="tableBody">
                @foreach ($empleado as $empleados)
                     <tr class="table-secondary">
-                        <td>{{ $empleados->id }}</td>
+                        <td>{{$empleados->id }}</td>
                         <td>{{$empleados->nombre}}</td>
                         <td>{{$empleados->apellido_paterno}}</td>
                         <td>{{$empleados->apellido_materno}}</td>
@@ -46,16 +38,8 @@
                         <td>{{$empleados->puesto}}</td>
                         <td>{{$empleados->fecha_ingreso}}</td>
                         <td>{{$empleados->email}}</td>
-                        <td>{{$empleados->rfc}}</td>    
-
-                       <!--  <td>
-                            @if ($empleados->status)
-                                <span class= "text-success"> ✓ Activo </span>
-                            @else
-                                <span class="text-danger"> Inactivo </span>
-                            @endif 
-                        </td> -->
-                    </tr>
+                        <td>{{$empleados->rfc}}</td> 
+                        </tr>
                 @endforeach
             </tbody>
         </table>

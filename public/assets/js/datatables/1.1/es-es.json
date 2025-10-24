@@ -19,6 +19,7 @@
         "sortDescending": ": Activar para ordenar la columna de manera descendente"
     },
     "buttons": {
+        "crete": "Crear Usuario",
         "copy": "Copiar",
         "colvis": "Visibilidad",
         "collection": "Colección",

@@ -15,7 +15,7 @@ class EmpleadoController extends Controller
             ->get()
             ->map(function ($empleado) {
                 return [
-                    'id' => $empleado->id,
+                    'id' => Crypt::encryptString ($empleado->id),
                     'nombre' => $empleado->nombre,
                     'apellido_paterno' => $empleado->apellido_paterno,
                     'apellido_materno' =>$empleado->apellido_materno,
@@ -75,17 +75,12 @@ class EmpleadoController extends Controller
         $datos_empleado->rfc =$request->rfc;
         $datos_empleado->status = true;
         //dd($request -> all()); 
-        if($request->hasFile('foto')){
-            $datos_empleado ['foto']=$request->file('foto')->store('uploads', 'public');
-        } else {
-            $datos_empleado->foto= null;
-        }
         $datos_empleado->save();
 
-//dd($datos_empleado->save());
+/* //dd($datos_empleado->save());
         //Empleado::insert($datos_empleado);
 
-       // return response()->json($datos_empleado);
+       // return response()->json($datos_empleado); */
        return redirect('ssvv/lista')->with('mensaje', 'Empleado agregado con éxito');
     }
 
@@ -93,20 +88,26 @@ class EmpleadoController extends Controller
      * Display the specified resource.
      */
 
-    public function show($id)
-    {
-        //
-        $empleado= Empleado::findOrfail($id);
-        return view ('ssvv.show', compact('empleado'));
+    public function show($encryptedId)
+{
+    try {
+        $id = Crypt::decryptString($encryptedId);
+        $empleado = Empleado::findOrFail($id);
+        return view ('ssvv/ver/{encryptedId}', compact('empleado'));
+
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'ID inválido');
+    }
     }
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($encryptedId)
     {
         //
+        $id = Crypt::decryptString($encryptedId);
         $empleado=Empleado::findOrFail($id );
         //dd ($empleado);
         return view ('ssvv.lista', compact('empleado') ); 
@@ -116,36 +117,57 @@ class EmpleadoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $encryptedId)
     {
         //
         $datos_empleado = $request->except(['_token','_method']);
-
-        if($request->hasFile('foto'))
-        {
-            $empleado=Empleado::findOrFail($id);
-
-            Storage::delete('public/'.$empleado->foto);
-
-            $datos_empleado ['foto']=$request->file('foto')->store('uploads', 'public');
-        }
  
         Empleado::where( 'id','=',$id)->update($datos_empleado);
 
         $empleado=Empleado::findOrFail($id);
-        return redirect('empleado')->with('mensaje', 'Empleado editado con éxito'); 
+        return redirect('ssvv.lista')->with('mensaje', 'Empleado editado con éxito'); 
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+
+    public function destroy($encryptedId)
     {
-    $empleado=Empleado::findOrFail($id);
-    $empleado->status=false;
-    $empleado->save();
-    
-    return redirect('empleado')->with('mensaje','Empleado desactivado');
+    try {
+        $id = Crypt::decryptString($encryptedId);
+        
+        $empleado = Empleado::findOrFail($id);
+        
+        // Cambiar el estado (toggle)
+        $empleado->status = !$empleado->status;
+        $empleado->save();
+        
+        $mensaje = $empleado->status ? 
+            'Empleado activado correctamente' : 
+            'Empleado desactivado correctamente';
+        
+        // Si es una petición AJAX
+        if (request()->ajax()) {
+            return response()->json([
+                'success' => true,
+                'mensaje' => $mensaje,
+                'nuevo_status' => $empleado->status
+            ]);
+        }
+        
+        return redirect('ssvv/lista')->with('mensaje', $mensaje);
+        
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error al actualizar el estado: ' . $e->getMessage()
+                ], 500);
+            }
+        
+        return redirect('ssvv/lista')->with('error', 'Error al actualizar el estado');
     }
+}
 }

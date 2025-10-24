@@ -16,7 +16,7 @@ use App\Http\Controllers\EmpleadoController;
 
 //Rutas de vistas
 Route::get('/ssvv', function () {
-    return view('ssvv.index'); //cambiar por layout
+    return view('ssvv.index'); 
 });
 
 Route::get('/ssvv/create', function () {
@@ -43,10 +43,6 @@ Route::get('ssvv/mensajes', function () {
     return view('dashboards.mensajes');
 });
 
-Route::get('/ssvv/dashboard', function () {
-    return view('ssvv.index');
-});
-
 Route::get('ssvv/lista', function () {
     return view('dashboards.listaUsuarios');
 });
@@ -62,12 +58,18 @@ Route::get('ssvv/ver', function () {
     return view('ssvv.show');
 });
 
+Route::get('ssvv/editar', function () {
+    return view('ssvv.edit');
+});
 
 //Rutas de controlador 
 Route::get('/ssvv/ajax/data', [EmpleadoController::class, 'getEmpleado'])->name('ajaxroute');
 
-Route::match(['get', 'put'], '/admin/users/edit/{encryptedId}', [EmpleadoController::class, 'edit']);
+Route::get('/ssvv/ver/{encryptedId}', [EmpleadoController::class, 'show'])->name('empleados.show');
+
+Route::put('/ssvv/desactivar/{encryptedId}', [EmpleadoController::class, 'destroy'])->name('empleados.cambio-status');
 
 Route::get('ssvv/lista', [EmpleadoController::class, 'index']); 
 
 Route::post('ssvv/store', [EmpleadoController::class, 'store']);
+

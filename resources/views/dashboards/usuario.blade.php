@@ -17,7 +17,7 @@
 		</div>
 		<!--end::Card title-->
 		<!--begin::Action-->
-		<a href="ssvv/editar" class="btn btn-primary align-self-center">Editar Perfil</a>
+		<a href="{{ url ('ssvv/editar') }}" class="btn btn-primary align-self-center">Editar Perfil</a>
 		<!--end::Action-->
 	</div>
 	<!--begin::Card header-->
@@ -117,9 +117,8 @@
 </div>
 <!--end::details View-->
 
-
+@section('scripts')
 <script src="{{ url ('assets/js/custom/utilities/products.js') }}"></script>
-<script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>
-<script src="{{ url ('assets/js/custom/widgets.js') }}"></script>
+@endsection
 
 @endsection

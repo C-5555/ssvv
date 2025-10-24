@@ -1,11 +1,13 @@
 @extends('layout')
 
 @section ('content1')
-- Formulario de edición de usuario
+- Formulario de vista de usuario
 @endsection
 
 @section('content')
-
+<form action="{{url ('/ssvv/editar '.$empleado->id) }}" method="post" enctype="multipart/form-data">
+	@method('PUT')
+@csrf 
     <label for="nombre"> Nombre </label>
     <input type="text" name="nombre" value="{{ isset($empleados ->nombre)?$empleados ->nombre:'' }}" id="nombre" disabled> <br>
 
@@ -30,8 +32,5 @@
     <label for="rfc"> RFC </label>
     <input type="text" name="nombre" value="{{ isset($empleados ->rfc)?$empleados ->rfc:'' }}" id="rfc" disabled> <br>
 
-    <label for="foto"> Foto:</label>
-    <img src="{{asset ('storage').'/'.$empleados->foto}}" width="100" alt="" > 
-    
 
 @endsection
