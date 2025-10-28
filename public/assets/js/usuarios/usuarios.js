@@ -34,47 +34,55 @@ $(document).ready(function () {
                     var isActive = row.status === 'Activo';
                     var buttonText = isActive ? 'Desactivar' : 'Activar';
                     var buttonClass = isActive ? 'btn-danger' : 'btn-success';
-                    var icon = isActive ? 'fa-ban' : 'fa-check';
+                    var encryptedId = encodeURIComponent(data);
 
 
                     return `             
-                    <div class="btn-group" role="group">               
-                       <button class="btn btn-view" 
-                                data-id="${data}"
-                                onclick="window.location.href='${url}/ssvv/ver/${data}'">
-                             Ver
+                    <div class="btn-group" role="group">         
+                        <button class="btn btn-permissions-user" 
+                            onclick="window.location.href='${url}/ssvv/permisos/${encryptedId}'">
+                            Permisos
                         </button>
+                    
+
+                       <button class="btn btn-view" 
+                            onclick="window.location.href='${url}/ssvv/ver/${encryptedId}'">
+                            Ver
+                        </button>
+
                         <button class="btn btn-edit" 
-                                data-id="${data}"
-                                onclick="window.location.href='${url}/ssvv/editar/${data}'">
+                                onclick="window.location.href='${url}/ssvv/editar/${encryptedId}'">
                             Editar
                         </button>
                         
                         <button class="btn ${buttonClass} cambio-status" 
                                 data-id="${data}" 
+                                data-id-raw="${row.id_raw}"
                                 data-status="${isActive}">
                                 ${buttonText}
-                            </button> 
-                            `;
+                        </button>       
+                    </div>
+                    `;
                 }
             },
         ],
     });
     $('#tablaUsuarios').on('click', '.cambio-status', function () {
         var button = $(this);
-        var userId = button.data('id');
+        var encryptedId = button.data('id');
         var currentStatus = button.data('status');
         var action = currentStatus ? 'desactivar' : 'activar';
         var confirmMessage = `¿Estás seguro que deseas ${action} este empleado?`;
 
         if (confirm(confirmMessage)) {
-            cambioUserStatus(userId, button);
+            cambioUserStatus(encryptedId, button);
         }
 
 
-        function cambioUserStatus(userId, button) {
+        function cambioUserStatus(encryptedId, button) {
+            var encodedId = encodeURIComponent(encryptedId);
             $.ajax({
-                url: `${url}/ssvv/desactivar/${userId}`,
+                url: `${url}/ssvv/desactivar/${encodedId}`,
                 type: 'PUT',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content')
@@ -83,23 +91,29 @@ $(document).ready(function () {
                     button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Procesando...');
                 },
                 success: function (response) {
-                    // Recargar la tabla para reflejar los cambios
                     $('#tablaUsuarios').DataTable().ajax.reload();
                     alert(response.mensaje || 'Estado actualizado correctamente');
-                },
-                error: function (xhr) {
-                    button.prop('disabled', false);
-                    alert('Error al actualizar el estado: ' + (xhr.responseJSON?.message || 'Error desconocido'));
                 }
             });
         }
+
         function verUsuario(encryptedId) {
             var encodedId = encodeURIComponent(encryptedId);
-            window.location.href = `${url}/ssvv/ver/${encryptedId}`;
+            window.location.href = `${url}/ssvv/ver/${encodedId}`;
         };
+
+
         function editarUsuario(encryptedId) {
             var encodedId = encodeURIComponent(encryptedId);
-            window.location.href = `${url}/ssvv/editar/${encryptedId}`;
+            console.log("estoy en el boton");
+            window.location.href = `${url}/ssvv/editar/${encodedId}`;
+        };
+
+
+
+        function verPermisos(encryptedId) {
+            var encodedId = encodeURIComponent(encryptedId);
+            window.location.href = `${url}/ssvv/permisos/${encodedId}`;
         }
 
     });

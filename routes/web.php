@@ -15,6 +15,8 @@ use App\Http\Controllers\EmpleadoController;
 */
 
 //Rutas de vistas
+
+
 Route::get('/ssvv', function () {
     return view('ssvv.index'); 
 });
@@ -58,18 +60,21 @@ Route::get('ssvv/ver', function () {
     return view('ssvv.show');
 });
 
-Route::get('ssvv/editar', function () {
-    return view('ssvv.edit');
-});
 
 //Rutas de controlador 
 Route::get('/ssvv/ajax/data', [EmpleadoController::class, 'getEmpleado'])->name('ajaxroute');
 
-Route::get('/ssvv/ver/{encryptedId}', [EmpleadoController::class, 'show'])->name('empleados.show');
+Route::get('/ssvv/ver/{encryptedId}', [EmpleadoController::class, 'show'])->name('ssvv.show');
 
-Route::put('/ssvv/desactivar/{encryptedId}', [EmpleadoController::class, 'destroy'])->name('empleados.cambio-status');
+Route::get('/ssvv/editar/{encryptedId}', [EmpleadoController::class, 'edit'])->name('ssvv.edit');
 
-Route::get('ssvv/lista', [EmpleadoController::class, 'index']); 
+Route::put('/ssvv/update/{id}', [EmpleadoController::class, 'update'])->name('ssvv.update');
+
+Route::get('/ssvv/permisos/{encryptedId}', [EmpleadoController::class, 'permisos'])->name('ssvv.permisos');
+
+Route::put('/ssvv/desactivar/{encryptedId}', [EmpleadoController::class, 'destroy'])->name('ssvv.cambio-status');
+
+Route::get('/ssvv/lista', [EmpleadoController::class, 'index'])->name('ssvv.lista');
 
 Route::post('ssvv/store', [EmpleadoController::class, 'store']);
 

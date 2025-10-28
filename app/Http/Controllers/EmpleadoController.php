@@ -15,7 +15,8 @@ class EmpleadoController extends Controller
             ->get()
             ->map(function ($empleado) {
                 return [
-                    'id' => Crypt::encryptString ($empleado->id),
+                    'id' => Crypt::encryptString($empleado->id),
+                    'id_raw' => $empleado->id,
                     'nombre' => $empleado->nombre,
                     'apellido_paterno' => $empleado->apellido_paterno,
                     'apellido_materno' =>$empleado->apellido_materno,
@@ -28,6 +29,19 @@ class EmpleadoController extends Controller
                 ];
             });
         return response()->json(['data' => $empleado]);
+    }
+
+     public function permisos($encryptedId)
+    {
+    try {
+        $id = Crypt::decryptString($encryptedId);
+        $empleado = Empleado::findOrFail($id);
+        
+        return view('ssvv.permisos', compact('empleado'));
+        
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'ID inválido');
+    }
     }
 
     /**
@@ -76,11 +90,9 @@ class EmpleadoController extends Controller
         $datos_empleado->status = true;
         //dd($request -> all()); 
         $datos_empleado->save();
-
-/* //dd($datos_empleado->save());
+        //dd($datos_empleado->save());
         //Empleado::insert($datos_empleado);
-
-       // return response()->json($datos_empleado); */
+       // return response()->json($datos_empleado);
        return redirect('ssvv/lista')->with('mensaje', 'Empleado agregado con éxito');
     }
 
@@ -89,45 +101,59 @@ class EmpleadoController extends Controller
      */
 
     public function show($encryptedId)
-{
+    {
     try {
         $id = Crypt::decryptString($encryptedId);
         $empleado = Empleado::findOrFail($id);
-        return view ('ssvv/ver/{encryptedId}', compact('empleado'));
-
+        
+        return view('ssvv.show', compact('empleado'));
+        
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'ID inválido');
     }
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($encryptedId)
+        public function edit($encryptedId)
     {
-        //
-        $id = Crypt::decryptString($encryptedId);
-        $empleado=Empleado::findOrFail($id );
-        //dd ($empleado);
-        return view ('ssvv.lista', compact('empleado') ); 
+        $decryptedId = Crypt::decryptString($encryptedId);
+        $empleado = Empleado::findOrFail($decryptedId);
 
+        $empleado->encrypted_id = $encryptedId;
+
+        return view('ssvv.edit', compact('empleado'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $encryptedId)
+/*     public function update(Request $request, $Id)
     {
-        //
+       // dd($request);
+        //$decryptedId = Crypt::decryptString($Id);
+        $empleado = Empleado::findOrFail($Id);
+
         $datos_empleado = $request->except(['_token','_method']);
  
-        Empleado::where( 'id','=',$id)->update($datos_empleado);
+        $empleado->update($datos_empleado);
 
-        $empleado=Empleado::findOrFail($id);
-        return redirect('ssvv.lista')->with('mensaje', 'Empleado editado con éxito'); 
+            return redirect()->route('ssvv.lista')->with('success', 'Empleado actualizado correctamente.');
 
-    }
+    } */
+
+    public function update(Request $request, $id)
+{
+    //dd($request);
+    $empleado = Empleado::findOrFail($id);
+
+    $datos_empleado = $request->except(['_token','_method']);
+ //dd($datos_empleado);
+    $empleado->update($datos_empleado);
+
+    return redirect()->route('ssvv.lista')->with('success', 'Empleado actualizado correctamente.');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -140,15 +166,13 @@ class EmpleadoController extends Controller
         
         $empleado = Empleado::findOrFail($id);
         
-        // Cambiar el estado (toggle)
         $empleado->status = !$empleado->status;
         $empleado->save();
         
         $mensaje = $empleado->status ? 
             'Empleado activado correctamente' : 
             'Empleado desactivado correctamente';
-        
-        // Si es una petición AJAX
+
         if (request()->ajax()) {
             return response()->json([
                 'success' => true,

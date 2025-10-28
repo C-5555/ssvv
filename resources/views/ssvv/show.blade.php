@@ -5,32 +5,55 @@
 @endsection
 
 @section('content')
-<form action="{{url ('/ssvv/editar '.$empleado->id) }}" method="post" enctype="multipart/form-data">
-	@method('PUT')
-@csrf 
-    <label for="nombre"> Nombre </label>
-    <input type="text" name="nombre" value="{{ isset($empleados ->nombre)?$empleados ->nombre:'' }}" id="nombre" disabled> <br>
+<main class="content">
+    <div class="container-fluid p-0 mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="h3">Datos Personales</h1>
+        </div>
+        <form action="{{url ('/ssvv/editar '.$empleado->id) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre"> Nombre </label>
+                            <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" value="{{ $empleado->nombre }}" disabled>
 
-    <label for="apellido_paterno"> Apellido paterno</label>
-    <input type= "text" name= "apellido_paterno" value="{{ isset($empleados ->apellido_paterno)? $empleados ->apellido_paterno:''}}" id= "apellido_paterno" disabled> <br>
+                        </div>
 
-    <label for="apellido_materno"> Apellido materno</label>
-    <input type="text" name="apellido_materno" value="{{isset ($empleados ->apellido_materno)?$empleados ->apellido_materno:'' }}" id="apellido_materno" disabled><br>
-
-    <label for="id_departamento"> Departamento</label>
-    <input type="text" name="id_departamento" value="{{isset ($empleados ->id_departamento)?$empleados ->id_departamento:'' }}" id="id_departamento" disabled><br>
-
-    <label for="puesto"> Puesto </label>
-    <input type="text" name="puesto" value="{{ isset($empleados ->puesto)?$empleados ->puesto:'' }}" id="puesto" disabled> <br>
-
-    <label for="fecha_ingreso"> Fecha de ingreso </label>
-    <input type="text" name="fecha_ingreso" value="{{ isset($empleados ->fecha_ingreso)?$empleados ->fecha_ingreso:'' }}" id="fecha_ingreso" disabled> <br>
-
-    <label for="correo"> Correo</label>
-    <input type="text" name="correo" value="{{ isset($empleados ->email)?$empleados ->email:'' }}" id="email" disabled><br>
-
-    <label for="rfc"> RFC </label>
-    <input type="text" name="nombre" value="{{ isset($empleados ->rfc)?$empleados ->rfc:'' }}" id="rfc" disabled> <br>
-
-
+                        <div class="col-md-6 mb-3">
+                            <label for="apellido_paterno"> Apellido paterno</label>
+                            <input type="text" class="form-control form-control-lg" id="apellido_paterno" name="apellido_paterno" value="{{ $empleado->apellido_paterno }}" disabled>
+                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="apellido_materno"> Apellido materno</label>
+                            <input type="text" class="form-control form-control-lg" id="apellido_materno" name="apellido_materno" value="{{ $empleado->apellido_materno }}" disabled>
+                        </div>
+                        <div class="col-md-6 mb-3"> 
+                            <label for="id_departamento"> Departamento</label>
+                            <input type="text" class="form-control form-control-lg" id="id_departamento" name="id_departamento" value="{{ $empleado->id_departamento }}" disabled>
+                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="puesto"> Puesto </label>
+                            <input type="text" class="form-control form-control-lg" id="puesto" name="puesto" value="{{ $empleado->puesto }}" disabled>
+                         </div>
+                         <div class="col-md-6 mb-3">
+                            <label for="fecha_ingreso"> Fecha de ingreso </label>
+                            <input type="text" class="form-control form-control-lg" id="fecha_ingreso" name="fecha_ingreso" value="{{ $empleado->fecha_ingreso }}" disabled>
+                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email"> Correo</label>
+                            <input type="text" class="form-control form-control-lg" id="email" name="email" value="{{ $empleado->email}}" disabled>
+                         </div>
+                         <div class="col-md-6 mb-3">
+                            <label for="rfc"> RFC </label>
+                            <input type="text" class="form-control form-control-lg" id="rfc" name="rfc" value="{{ $empleado->rfc }}" disabled>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
 @endsection

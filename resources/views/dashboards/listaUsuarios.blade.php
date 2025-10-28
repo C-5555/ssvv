@@ -4,10 +4,15 @@
 @endsection
 @section('content')
     <div class="container">
-        <div class="header-section">          
-            <h1>Usuarios</h1>
-            <a href="{{ url('ssvv/create') }}" class="btn btn-create"> <i class="fas fa-plus"></i> Crear usuario</a>        </div>
-
+        <div class="d-flex justify-content-between">
+            <div>  
+                <h1 class="text-center">Usuarios</h1>
+            </div>
+            <div>
+                <a href="{{ url('ssvv/create') }}" class="btn btn-create d-flex justify-content-end"> <i class="fas fa-plus"></i> Crear usuario</a>        
+            </div> 
+        </div>       
+    
         <!-- Tabla -->
         <table id="tablaUsuarios" class="display" style="width:100%">
             <thead>

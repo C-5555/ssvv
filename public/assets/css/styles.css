@@ -56,9 +56,10 @@ h1 {
     cursor: pointer;
     font-size: 14px;
     font-weight: 400;
-    align-items: center;
+    align-items: right;
     gap: 8px;
-    position: absolute;
+    display: flex;
+    justify-content: right;
     right: 0;
 
 
@@ -160,6 +161,11 @@ button:disabled {
 
 #pageInfo {
     font-weight: bold;
+}
+
+.btn-permissions-user {
+    background-color: #659af4d2;
+    color: black;
 }
 
 .btn-view {
