@@ -5,8 +5,9 @@
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-between">
+            <div>                 </div>
             <div>  
-                <h1 class="text-center">Usuarios</h1>
+                <h1>Usuarios</h1>
             </div>
             <div>
                 <a href="{{ url('ssvv/create') }}" class="btn btn-create d-flex justify-content-end"> <i class="fas fa-plus"></i> Crear usuario</a>        
