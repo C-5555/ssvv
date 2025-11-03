@@ -14,7 +14,7 @@ $(document).ready(function () {
             { data: 'nombre' },
             { data: 'apellido_paterno' },
             { data: 'apellido_materno' },
-            { data: 'id_departamento' },
+            { data: 'area' },
             { data: 'puesto' },
             { data: 'fecha_ingreso' },
             { data: 'email' },

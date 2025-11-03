@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Empleado;
 
 
+
 class EmpleadoSeeder extends Seeder
 {
     /**
@@ -20,7 +21,7 @@ class EmpleadoSeeder extends Seeder
            'nombre' =>'Juan',
                 'apellido_paterno' => 'X',
                 'apellido_materno' => 'Y',
-                'id_departamento' => '4', 
+                'area' => '4', 
                 'puesto'=> 'Supervisor',
                 'fecha_ingreso' => '22-06-2024',
                 'email'=> 'juan@gmail.com',

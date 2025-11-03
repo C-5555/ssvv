@@ -657,5 +657,7 @@
 	<!--end::Col-->									
 </div>									
 <!--end::Row-->																		
-							
+@section('scripts')
+<script src="{{ url ('assets/js/custom/utilities/products.js') }}"></script>
+@endsection							
 @endsection

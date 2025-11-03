@@ -6,12 +6,13 @@ use App\Models\Empleado;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage; 
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Usuarios;
 
 class EmpleadoController extends Controller
 { 
     public function getEmpleado()
     {
-        $empleado = Empleado::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'id_departamento', 'puesto', 'fecha_ingreso', 'email', 'rfc', 'status')
+        $empleado = Empleado::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'area', 'puesto', 'fecha_ingreso', 'email', 'rfc', 'status')
             ->get()
             ->map(function ($empleado) {
                 return [
@@ -20,7 +21,7 @@ class EmpleadoController extends Controller
                     'nombre' => $empleado->nombre,
                     'apellido_paterno' => $empleado->apellido_paterno,
                     'apellido_materno' =>$empleado->apellido_materno,
-                    'id_departamento' => $empleado->id_departamento,
+                    'area' => $empleado->area,
                     'puesto' => $empleado->puesto,
                     'fecha_ingreso' => $empleado->fecha_ingreso,
                     'email' => $empleado->email,
@@ -28,20 +29,18 @@ class EmpleadoController extends Controller
                     'status' => $empleado->status ? 'Activo' : 'Inactivo',
                 ];
             });
+
+      
         return response()->json(['data' => $empleado]);
     }
 
      public function permisos($encryptedId)
-    {
-    try {
+     {
         $id = Crypt::decryptString($encryptedId);
         $empleado = Empleado::findOrFail($id);
         
         return view('ssvv.permisos', compact('empleado'));
         
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'ID inválido');
-    }
     }
 
     /**
@@ -52,7 +51,7 @@ class EmpleadoController extends Controller
         //
         $datos['empleados']=Empleado::get();
         $empleado=Empleado::get();
-        return view ('dashboards.listaUsuarios',compact ('empleado', 'datos')); 
+        return view ('dashboards.listaDatosUsuarios',compact ('empleado', 'datos')); 
     }
 
     /**
@@ -62,7 +61,7 @@ class EmpleadoController extends Controller
     {
         //
         //$empleado=Empleado::get();
-        //return view ('dashboards.listaUsuarios', compact ('empleado')); 
+        //return view ('dashboards.listaDatosUsuarios', compact ('empleado')); 
     }
     
 
@@ -82,7 +81,7 @@ class EmpleadoController extends Controller
         $datos_empleado->nombre = $request->nombre;
         $datos_empleado->apellido_paterno =$request->apellido_paterno;
         $datos_empleado->apellido_materno =$request->apellido_materno;
-        $datos_empleado->id_departamento =$request->id_departamento;
+        $datos_empleado->area =$request->area;
         $datos_empleado->puesto =$request->puesto;
         $datos_empleado->fecha_ingreso =$request->fecha_ingreso;
         $datos_empleado->email=$request->email;
@@ -93,7 +92,7 @@ class EmpleadoController extends Controller
         //dd($datos_empleado->save());
         //Empleado::insert($datos_empleado);
        // return response()->json($datos_empleado);
-       return redirect('ssvv/lista')->with('mensaje', 'Empleado agregado con éxito');
+       return redirect('ssvv/listadatos')->with('mensaje', 'Empleado agregado con éxito');
     }
 
     /**

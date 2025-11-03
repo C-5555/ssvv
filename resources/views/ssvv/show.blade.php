@@ -31,8 +31,8 @@
                             <input type="text" class="form-control form-control-lg" id="apellido_materno" name="apellido_materno" value="{{ $empleado->apellido_materno }}" disabled>
                         </div>
                         <div class="col-md-6 mb-3"> 
-                            <label for="id_departamento"> Departamento</label>
-                            <input type="text" class="form-control form-control-lg" id="id_departamento" name="id_departamento" value="{{ $empleado->id_departamento }}" disabled>
+                            <label for="area"> Área</label>
+                            <input type="text" class="form-control form-control-lg" id="area" name="area" value="{{ $empleado->area }}" disabled>
                          </div>
                         <div class="col-md-6 mb-3">
                             <label for="puesto"> Puesto </label>

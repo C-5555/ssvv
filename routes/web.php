@@ -45,12 +45,12 @@ Route::get('ssvv/mensajes', function () {
     return view('dashboards.mensajes');
 });
 
-Route::get('ssvv/lista', function () {
-    return view('dashboards.listaUsuarios');
+Route::get('ssvv/listadatos', function () {
+    return view('dashboards.listaDatosUsuarios');
 });
 
-Route::get('ssvv/vista', function () {
-    return view('dashboards.vistaUsuario');
+Route::get('ssvv/lista', function () {
+    return view('dashboards.listaUsuario');
 });
 
 Route::get('ssvv/roles', function () {
@@ -74,7 +74,7 @@ Route::get('/ssvv/permisos/{encryptedId}', [EmpleadoController::class, 'permisos
 
 Route::put('/ssvv/desactivar/{encryptedId}', [EmpleadoController::class, 'destroy'])->name('ssvv.cambio-status');
 
-Route::get('/ssvv/lista', [EmpleadoController::class, 'index'])->name('ssvv.lista');
+Route::get('/ssvv/listadatos', [EmpleadoController::class, 'index'])->name('ssvv.listadatos');
 
 Route::post('ssvv/store', [EmpleadoController::class, 'store']);
 

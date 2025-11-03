@@ -814,7 +814,7 @@
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
-															<span class="menu-title">Lista de usuarios</span>
+															<span class="menu-title">Lista de Usuarios</span>
 														</a>
 													<!--end:Menu link-->
 													</div>
@@ -822,11 +822,11 @@
 													<!--begin:Menu item-->
 													<div class="menu-item">
 														<!--begin:Menu link-->
-														<a class="menu-link" href="{{ url('/ssvv/vista') }}">
+														<a class="menu-link" href="{{ url('/ssvv/listadatos') }}">
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
-															<span class="menu-title">Vista de usuarios</span>
+															<span class="menu-title">Lista de datos de Usuario</span>
 														</a>
 														<!--end:Menu link-->
 													</div>

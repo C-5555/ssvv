@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 
 
+
 class Empleado extends Model
 {
     protected $table = 'empleados';
@@ -32,7 +33,7 @@ class Empleado extends Model
     protected $appends = ['encrypted_id'];
 
     public function usuario(){
-        return $this->hasMany('App\Models\User', 'id_empleado');
+      return $this->hasMany('App\User', 'id_empleado', 'id');
     }
 
     public function getEncryptedIdAttribute()
