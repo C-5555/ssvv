@@ -151,7 +151,7 @@ class EmpleadoController extends Controller
  //dd($datos_empleado);
     $empleado->update($datos_empleado);
 
-    return redirect()->route('ssvv.lista')->with('success', 'Empleado actualizado correctamente.');
+    return redirect()->route('ssvv.listadatos')->with('success', 'Empleado actualizado correctamente.');
 }
 
     /**
