@@ -44,6 +44,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function empleado(){
+        return $this->belongsTo('App\Models\Empleado', 'id_empleado');
+    }
+
     public function getIdBcryptAttribute(){
         return Hash::make($this->id); 
     }

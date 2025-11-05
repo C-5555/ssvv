@@ -4,19 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Usuarios extends Model
 {
     use HasFactory;
         protected $table = 'Usuarios';
-            protected $primaryKey = 'id';
-            protected $fillable = [
-                'id_empleado', 
-                'nickname', 
-                'created_at', 
-                'updated_at'
-            ];
+        protected $primaryKey = 'id';
+        protected $fillable = [
+            'id_empleado', 
+            'nickname', 
+            'created_at', 
+            'updated_at'
+        ];
 
+    public $timestamps = true;
 }
 
 

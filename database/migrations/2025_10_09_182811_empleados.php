@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->string('apellido_paterno',50);
             $table->string('apellido_materno',50);
-            $table->foreignId('id_departamento');
+            $table->foreignId('id_area ');
             $table->string('puesto',50);
             $table->date('fecha_ingreso');
             $table->string('email',50);

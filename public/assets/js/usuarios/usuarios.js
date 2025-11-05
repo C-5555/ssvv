@@ -14,7 +14,7 @@ $(document).ready(function () {
             { data: 'nombre' },
             { data: 'apellido_paterno' },
             { data: 'apellido_materno' },
-            { data: 'area' },
+            { data: 'id_area' },
             { data: 'puesto' },
             { data: 'fecha_ingreso' },
             { data: 'email' },
@@ -27,6 +27,7 @@ $(document).ready(function () {
                         '<span class="text-danger">Inactivo</span>';
                 }
             },
+            { data: 'id_solicitud', 'visible': false },
             {
                 data: 'id',
                 render: function (data, type, row) {

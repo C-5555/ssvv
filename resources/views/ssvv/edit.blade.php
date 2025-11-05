@@ -30,8 +30,8 @@
                             <input type="text" class="form-control form-control-lg" id="apellido_materno" name="apellido_materno" value="{{ $empleado->apellido_materno }}" required>
                         </div>
                         <div class="col-md-6 mb-3"> 
-                            <label for="area"> Área</label>
-                            <input type="text" class="form-control form-control-lg" id="area" name="area" value="{{ $empleado->area }}" required>
+                            <label for="id_area"> Área</label>
+                            <input type="text" class="form-control form-control-lg" id="id_area" name="id_area" value="{{ $empleado->id_area }}" required>
                          </div>
                         <div class="col-md-6 mb-3">
                             <label for="puesto"> Puesto </label>

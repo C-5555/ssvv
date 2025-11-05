@@ -21,13 +21,13 @@ class EmpleadoSeeder extends Seeder
            'nombre' =>'Juan',
                 'apellido_paterno' => 'X',
                 'apellido_materno' => 'Y',
-                'area' => '4', 
+                'id_area' => '1', 
                 'puesto'=> 'Supervisor',
                 'fecha_ingreso' => '22-06-2024',
                 'email'=> 'juan@gmail.com',
                 'rfc' => '5544875698AS',
                 'foto'=> '.',
-                'status' => 'Inactivo',
+                'status' => 'true',
                 'id_solicitud' => '1'
         ]);
     }

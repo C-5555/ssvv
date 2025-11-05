@@ -12,7 +12,7 @@ class EmpleadoController extends Controller
 { 
     public function getEmpleado()
     {
-        $empleado = Empleado::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'area', 'puesto', 'fecha_ingreso', 'email', 'rfc', 'status')
+        $empleado = Empleado::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'id_area', 'puesto', 'fecha_ingreso', 'email', 'rfc', 'status', 'id_solicitud')
             ->get()
             ->map(function ($empleado) {
                 return [
@@ -21,12 +21,13 @@ class EmpleadoController extends Controller
                     'nombre' => $empleado->nombre,
                     'apellido_paterno' => $empleado->apellido_paterno,
                     'apellido_materno' =>$empleado->apellido_materno,
-                    'area' => $empleado->area,
+                    'id_area' => $empleado->id_area,
                     'puesto' => $empleado->puesto,
                     'fecha_ingreso' => $empleado->fecha_ingreso,
                     'email' => $empleado->email,
                     'rfc' => $empleado->rfc,
                     'status' => $empleado->status ? 'Activo' : 'Inactivo',
+                    'id_solicitud'=> Crypt::encryptString($empleado->id_solicitud)
                 ];
             });
 
@@ -49,9 +50,8 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $datos['empleados']=Empleado::get();
         $empleado=Empleado::get();
-        return view ('dashboards.listaDatosUsuarios',compact ('empleado', 'datos')); 
+        return view ('dashboards.listaDatosUsuarios',compact ('empleado')); 
     }
 
     /**
@@ -81,7 +81,7 @@ class EmpleadoController extends Controller
         $datos_empleado->nombre = $request->nombre;
         $datos_empleado->apellido_paterno =$request->apellido_paterno;
         $datos_empleado->apellido_materno =$request->apellido_materno;
-        $datos_empleado->area =$request->area;
+        $datos_empleado->id_area =$request->id_area;
         $datos_empleado->puesto =$request->puesto;
         $datos_empleado->fecha_ingreso =$request->fecha_ingreso;
         $datos_empleado->email=$request->email;
@@ -143,7 +143,7 @@ class EmpleadoController extends Controller
     } */
 
     public function update(Request $request, $id)
-{
+    {
     //dd($request);
     $empleado = Empleado::findOrFail($id);
 
@@ -152,7 +152,7 @@ class EmpleadoController extends Controller
     $empleado->update($datos_empleado);
 
     return redirect()->route('ssvv.listadatos')->with('success', 'Empleado actualizado correctamente.');
-}
+    }
 
     /**
      * Remove the specified resource from storage.

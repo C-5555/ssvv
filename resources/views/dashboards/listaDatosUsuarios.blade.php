@@ -23,12 +23,13 @@
                     <th data-sort="nombre">Nombre</th>
                     <th data-sort="apellido_paterno">Apellido Paterno</th>
                     <th data-sort="apellido_materno">Apellido Materno</th>
-                    <th data-sort="area">Área</th>
+                    <th data-sort="id_area">Área</th>
                     <th data-sort="puesto">Puesto</th>
                     <th data-sort="fecha_ingreso">Fecha de Ingreso</th>
                     <th data-sort="email">Email</th>
                     <th data-sort="rfc">RFC</th>                    
                     <th data-sort="status">Status</th> 
+                    <th data-sort="status">id_solicitud</th> 
                     <th data-sort="acciones">Acciones</th>
                                        
                 </tr>
@@ -40,7 +41,7 @@
                         <td>{{$empleados->nombre}}</td>
                         <td>{{$empleados->apellido_paterno}}</td>
                         <td>{{$empleados->apellido_materno}}</td>
-                        <td>{{$empleados->area}}</td>
+                        <td>{{$empleados->id_area}}</td>
                         <td>{{$empleados->puesto}}</td>
                         <td>{{$empleados->fecha_ingreso}}</td>
                         <td>{{$empleados->email}}</td>
