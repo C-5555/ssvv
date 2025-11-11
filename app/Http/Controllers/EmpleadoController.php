@@ -87,7 +87,7 @@ class EmpleadoController extends Controller
         $datos_empleado->email=$request->email;
         $datos_empleado->rfc =$request->rfc;
         $datos_empleado->status = true;
-        //dd($request -> all()); 
+        dd($request -> all()); 
         $datos_empleado->save();
         //dd($datos_empleado->save());
         //Empleado::insert($datos_empleado);

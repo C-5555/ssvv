@@ -9,7 +9,7 @@ class Area extends Model
 {
     use HasFactory;
 
-     protected $table = 'area';
+    protected $table = 'area';
     protected $primaryKey = 'id';
     protected $fillable = [
 
@@ -21,6 +21,10 @@ class Area extends Model
     ];
 
 	public $timestamps = true;
-    
+
+    public function area()
+    {
+        return $this->belongsTo(Empleado::class, 'id_area');
+    }
 
 }

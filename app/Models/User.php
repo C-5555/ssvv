@@ -41,8 +41,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password' => 'hashed'
     ];
+
+    protected $guard_name = 'web';
+
+    
 
     public function empleado(){
         return $this->belongsTo('App\Models\Empleado', 'id_empleado');

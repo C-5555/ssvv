@@ -31,4 +31,16 @@ class Solicitud extends Model
     {
         return Crypt::encryptString($this->id);
     }
+
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'id_empleado');
+    }
+    
+    public function  motivos()
+    {
+        return $this->masMany(Motivo::class, 'id_motivo');
+    }
+
+
 }

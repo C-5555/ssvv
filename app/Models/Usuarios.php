@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Crypt;
+
 
 class Usuarios extends Model
 {
@@ -12,15 +12,31 @@ class Usuarios extends Model
         protected $table = 'Usuarios';
         protected $primaryKey = 'id';
         protected $fillable = [
+            'password',   
             'id_empleado', 
-            'nickname', 
-            'created_at', 
-            'updated_at'
+            'admin',
+            'id_historial'
+        
         ];
 
     public $timestamps = true;
-}
 
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'id_empleado');
+    }
+
+    public function historiales()
+    {
+        return $this->hasMany(Historial::class, 'id_historial');
+    }
+
+    
+    
+
+
+
+    
 
 
 
@@ -36,3 +52,4 @@ class Usuarios extends Model
 
     public function anios(){
         return $this->hasMany('App\MetodoSugerenciaTipoOrdenAnio','id_anio'); */
+}

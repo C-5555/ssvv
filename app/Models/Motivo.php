@@ -14,8 +14,15 @@ class Motivo extends Model
     protected $fillable = [
 
         'tipo',
-        'clave'
+        'clave',
+        'id_empleado'
     ];
     
     public $timestamps = true;
+
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'id_empleado');
+    }
+    
 }

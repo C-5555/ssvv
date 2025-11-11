@@ -60,6 +60,30 @@ Route::get('ssvv/ver', function () {
     return view('ssvv.show');
 });
 
+Route::get('ssvv/login', function () {
+    return view('auth.login');
+});
+
+Route::get('ssvv/registro', function () {
+    return view('auth.register');
+});
+
+Route::get('ssvv/reset', function () {
+    return view('auth.resetPassword');
+});
+
+Route::get('ssvv/confirm', function () {
+    return view('auth.confirmPassword');
+});
+
+Route::get('ssvv/newpswd', function () {
+    return view('auth.newPassword');
+});
+
+Route::get('ssvv/two', function () {
+    return view('auth.twoSteps');
+});
+
 
 //Rutas de controlador 
 Route::get('/ssvv/ajax/data', [EmpleadoController::class, 'getEmpleado'])->name('ajaxroute');

@@ -11,49 +11,60 @@ use Illuminate\Support\Facades\Crypt;
 
 class Empleado extends Model
 {
-    protected $table = 'empleados';
-    protected $primaryKey = 'id';
-    protected $fillable = [
+  protected $table = 'empleados';
+  protected $primaryKey = 'id';
+  protected $fillable = [
 
-        'nombre',
-        'apellido_paterno',
-        'apellido_materno',
-        'id_area', 
-        'puesto',
-        'fecha_ingreso',
-        'email',
-        'rfc',
-        'status',
-        'id_solicitud'
+    'nombre',
+    'apellido_paterno',
+    'apellido_materno',
+    'id_area', 
+    'puesto',
+    'fecha_ingreso',
+    'email',
+    'rfc',
+    'status',
+    'id_solicitud'
 
-    ];
+  ];
 
 	public $timestamps = true;
 
-    protected $appends = ['encrypted_id'];
+  protected $appends = ['encrypted_id'];
 
-    public function empleado(){
-      return $this->hasMany('App\User', 'id_empleado', 'id');
-    }
+ /*  public function empleado(){
+    return $this->hasMany('App\User', 'id_empleado', 'id');
+  } */
 
-     public function area(){
-      return $this->hasOne('App\Area', 'id_area', 'id');
-    }
+   public function area(){
+    return $this->hasOne('App\Models\Area', 'id_area', 'id');
+  }
 
-    public function solicitud(){
-      return $this->hasMany('App\Solicitud', 'id_solicitud', 'id');
-    }
+  public function solicitudes(){
+    return $this->hasMany('App\Models\Solicitud', 'id_solicitud', 'id');
+  }
 
-    public function usuarios(){
-      return $this->hasMany('App\Usuarios', 'id_usuarios', 'id');
-    }
+  public function historiales(){
+   return $this->hasMany('App\Models\Historial', 'id_historial', 'id');
+  }
+
+  public function usuarios(){
+    return $this->hasMany('App\Models\Usuarios', 'id_usuarios', 'id');
+  }
+
+  public function motivos(){
+    return $this->hasMany('App\Models\Motivo', 'id_motivo', 'id');
+  }
+
+  
+
+   
 
 
+  public function getEncryptedIdAttribute()
+  {
+    return Crypt::encryptString($this->id);
+  }
 
-    public function getEncryptedIdAttribute()
-    {
-        return Crypt::encryptString($this->id);
-    }
-
-    
+  
 }
