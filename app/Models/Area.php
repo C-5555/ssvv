@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Empleado;
 
 class Area extends Model
 {
@@ -22,9 +23,10 @@ class Area extends Model
 
 	public $timestamps = true;
 
-    public function area()
+   public function empleados()
     {
-        return $this->belongsTo(Empleado::class, 'id_area');
+        return $this->hasMany('App\Models\Empleado', 'id_area');
     }
+
 
 }

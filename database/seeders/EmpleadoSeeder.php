@@ -19,16 +19,16 @@ class EmpleadoSeeder extends Seeder
 
         Empleado::create([
            'nombre' =>'Juan',
-                'apellido_paterno' => 'X',
-                'apellido_materno' => 'Y',
-                'id_area' => '1', 
-                'puesto'=> 'Supervisor',
-                'fecha_ingreso' => '22-06-2024',
-                'email'=> 'juan@gmail.com',
-                'rfc' => '5544875698AS',
-                'foto'=> '.',
-                'status' => 'true',
-                'id_solicitud' => '1'
+            'apellido_paterno' => 'X',
+            'apellido_materno' => 'Y',
+            'id_area' => null, 
+            'puesto'=> 'Supervisor',
+            'fecha_ingreso' => '22-06-2024',
+            'email'=> 'juan@gmail.com',
+            'rfc' => '5544875698AS',
+            'foto'=> '.',
+            'status' => 'true',
+            'id_solicitud' => '1'
         ]);
     }
 };

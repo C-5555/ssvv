@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->string('apellido_paterno',50);
             $table->string('apellido_materno',50);
-            $table->foreignId('id_area ');
+            $table->foreignId('id_area')->nullable();
             $table->string('puesto',50);
             $table->date('fecha_ingreso');
-            $table->string('email',50);
+            $table->string('email',50)->unique();
             $table->string('rfc',13);
             $table->string('foto')->nullable();
             $table->boolean('status')->default(true); 

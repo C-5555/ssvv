@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Area;
+
 
 
 
@@ -36,9 +38,10 @@ class Empleado extends Model
     return $this->hasMany('App\User', 'id_empleado', 'id');
   } */
 
-   public function area(){
-    return $this->hasOne('App\Models\Area', 'id_area', 'id');
-  }
+   public function area()
+    {
+        return $this->belongsTo('App\Models\Area', 'id_area');
+    }
 
   public function solicitudes(){
     return $this->hasMany('App\Models\Solicitud', 'id_solicitud', 'id');
