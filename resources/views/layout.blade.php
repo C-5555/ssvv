@@ -36,10 +36,8 @@
 		<!--begin::Theme mode setup on page load-->
 		<script>var defaultThemeMode = "dark"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if ( localStorage.getItem("data-theme") !== null ) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }
 		</script>
-		<!--end::Theme mode setup on page load-->
-
-		
-<!---inicio toolbar-->	
+		<!--end::Theme mode setup on page load-->		
+		<!---inicio toolbar-->	
 		<!--begin::App-->
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 			<!--begin::Page-->
@@ -348,12 +346,16 @@
 														<!--end::Actions-->
 													</form>
 													<!--end::Preferences-->
-												</div>
-												<!--end::Menu-->
+												</div>	
+												<!--begin::Empty-->	
 											</div>
-											<!--end::Search-->
+											<!--begin::Wrapper-->
 										</div>
-										<!--end::Search-->
+										<!--end::Menu-->
+									</div>
+									<!--end::Search-->
+								</div>
+								<!--end::Search-->
 										<!--begin::Notifications-->
 										<div class="app-navbar-item ms-1 ms-lg-3">
 											<!--begin::Menu- wrapper-->
@@ -368,36 +370,35 @@
 													</svg>
 												</span>
 												<!--end::Svg Icon-->
-											</div>
-											<!--begin::Menu-->
-										<div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true">
-											<!--begin::Heading-->
-											<div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('assets/media/misc/menu-header-bg.jpg')">
-												<!--begin::Title-->
-												<h3 class="text-white fw-semibold px-9 mt-10 mb-6">Notifications
-												<span class="fs-8 opacity-75 ps-3">24 reports</span></h3>
-												<!--end::Title-->
-												<!--begin::Tabs-->
-												<ul class="nav nav-line-tabs nav-line-tabs-2x nav-stretch fw-semibold px-9">
-													<li class="nav-item">
-														<a class="nav-link text-white opacity-75 opacity-state-100 pb-4" data-bs-toggle="tab" href="#kt_topbar_notifications_1">Alerts</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link text-white opacity-75 opacity-state-100 pb-4 active" data-bs-toggle="tab" href="#kt_topbar_notifications_2">Updates</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link text-white opacity-75 opacity-state-100 pb-4" data-bs-toggle="tab" href="#kt_topbar_notifications_3">Logs</a>
-													</li>
-												</ul>
-												<!--end::Tabs-->
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true">
+													<!--begin::Heading-->
+													<div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('assets/media/misc/menu-header-bg.jpg')">
+														<!--begin::Title-->
+														<h3 class="text-white fw-semibold px-9 mt-10 mb-6">Notifications
+														<span class="fs-8 opacity-75 ps-3">24 reports</span></h3>
+														<!--end::Title-->
+														<!--begin::Tabs-->
+														<ul class="nav nav-line-tabs nav-line-tabs-2x nav-stretch fw-semibold px-9">
+															<li class="nav-item">
+																<a class="nav-link text-white opacity-75 opacity-state-100 pb-4" data-bs-toggle="tab" href="#kt_topbar_notifications_1">Alerts</a>
+															</li>
+															<li class="nav-item">
+																<a class="nav-link text-white opacity-75 opacity-state-100 pb-4 active" data-bs-toggle="tab" href="#kt_topbar_notifications_2">Updates</a>
+															</li>
+															<li class="nav-item">
+																<a class="nav-link text-white opacity-75 opacity-state-100 pb-4" data-bs-toggle="tab" href="#kt_topbar_notifications_3">Logs</a>
+															</li>
+														</ul>
+														<!--end::Tabs-->
+													</div>
+													<!--end::Heading-->
 												</div>
-												<!--end::Heading-->
+												<!--end::Menu-->
 											</div>
-											<!--end::Menu-->
 											<!--end::Menu wrapper-->
 										</div>
 										<!--end::Notifications-->
-										<!--begin::Theme mode-->
 										<!--begin::Theme mode-->
 										<div class="app-navbar-item ms-1 ms-lg-3">
 											<!--begin::Menu toggle-->
@@ -564,16 +565,16 @@
 								</div>
 								<!--end::Navbar-->
 							</div>
-							<!--end::Header wrapper-->
+							<!--end::Navbar-->
 						</div>
-						<!--end::Header container-->
+						<!--end::Header wrapper-->
 					</div>
-					<!--end::Wrapper-->
+					<!--end::Header container-->
 				</div>
 				<!--end::Header-->
-<!---Fin toolbar-->	
+				<!---Fin toolbar-->	
 
-<!---inicio sidebar-->				
+				<!---inicio sidebar-->				
 				<!--begin::Wrapper-->
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 					<!--begin::Sidebar-->
@@ -810,7 +811,7 @@
 													<!--begin:Menu item-->
 													<div class="menu-item">
 														<!--begin:Menu link-->
-														<a class="menu-link" href="{{ url('ssvv/lista') }}">
+														<a class="menu-link" href="{{ url('users/ver') }}">
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
@@ -930,7 +931,7 @@
 			<!--end::Page-->
 		</div>
 		<!--end::App-->
-		<!--begin::Drawers-->
+
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
 			<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
