@@ -17,7 +17,7 @@ class EmpleadoSeeder extends Seeder
     public function run(): void
     {
 
-        Empleado::create([
+        /* Empleado::create([
            'nombre' =>'Juan',
             'apellido_paterno' => 'X',
             'apellido_materno' => 'Y',
@@ -29,6 +29,6 @@ class EmpleadoSeeder extends Seeder
             'foto'=> '.',
             'status' => 'true',
             'id_solicitud' => '1'
-        ]);
+        ]); */
     }
 };

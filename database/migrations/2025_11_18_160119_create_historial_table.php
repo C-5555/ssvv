@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('historial', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_empleado');
             $table->foreignId('id_solicitud');
+            $table->enum('accion', ['solicitado', 'aprobado', 'rechazado', 'modificado', 'comentado']);
+            $table->text('comentarios')->nullable();
             $table->timestamps();
         });
     }

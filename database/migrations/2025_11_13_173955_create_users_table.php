@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); 
+            $table->string('rfc', 13)->unique(); 
             $table->string('password');
-            $table->rememberToken();    
-            $table->foreignId('id_empleado');
-            $table->bigInteger('admin');
-            $table->foreignId('id_historial');
+            $table->string('password_confirmation')->nullable(); 
+            $table->rememberToken();
+            $table->foreignId('id_rol')->nullable();
             $table->timestamps();
         });
     }

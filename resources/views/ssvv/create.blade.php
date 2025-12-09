@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content1')
-- Formulario de creación de usuario
+- Formulario de creación de usuarios
 @endsection
 
 
@@ -9,7 +9,7 @@
 <form action="{{ url('ssvv/store') }}" method="post" enctype="multipart/form-data" >
     @csrf 
     @method('POST')
-    @include('ssvv._form',['modo'=>'Crear'])
+    @include('ssvv._form')
 
 </form>
 @endsection

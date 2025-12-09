@@ -46,10 +46,18 @@
                             <label for="email"> Correo</label>
                             <input type="text" class="form-control form-control-lg" id="email" name="email" value="{{ $empleado->email}}" disabled>
                          </div>
-                         <div class="col-md-6 mb-3">
-                            <label for="rfc"> RFC </label>
-                            <input type="text" class="form-control form-control-lg" id="rfc" name="rfc" value="{{ $empleado->rfc }}" disabled>
-                         </div>
+                         
+                            <div class="col-md-6 mb-3">
+                                <label for="rfc">RFC</label>
+                                <input type="text" class="form-control form-control-lg" id="rfc" value="{{ $empleado->user->rfc  }}" disabled>
+                            </div>
+                        
+
+                        <div class="col-12 text-end mt-3">
+                            <a href="{{ route('ssvv.edit', Crypt::encryptString($empleado->id)) }}" class="btn btn-primary btn-lg">
+                                Editar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

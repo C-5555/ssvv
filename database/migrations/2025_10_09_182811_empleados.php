@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_user')->nullable();
             $table->string('nombre', 100);
             $table->string('apellido_paterno',50);
             $table->string('apellido_materno',50);
             $table->foreignId('id_area')->nullable();
             $table->string('puesto',50);
             $table->date('fecha_ingreso');
-            $table->string('email',50)->unique();
-            $table->string('rfc',13);
-            $table->string('foto')->nullable();
+            $table->string('email',50);
             $table->boolean('status')->default(true); 
-            $table->foreignId('id_solicitud');
             $table->timestamps();
         });
     }

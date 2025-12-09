@@ -16,11 +16,13 @@ class Solicitud extends Model
 
         'id',
         'id_empleado',
-        'dias_solicitados',
-        'status',
-        'fecha_status',
         'motivo',
-        'monto_solicitado'
+        'fecha_solicitud',
+        'estado',
+        'fecha_status',
+        'dias_solicitados',
+        'monto_solicitado',
+        'detalles'
         
     ];
 

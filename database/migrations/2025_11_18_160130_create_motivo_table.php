@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('tipo');
             $table->string('clave');
-            $table->foreignId('id_empleado');
+            $table->foreignId('id_user');
             $table->timestamps();
         });
     }

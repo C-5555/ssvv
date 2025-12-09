@@ -637,6 +637,7 @@
 										<!--end:Menu link-->
 									</div>
 									<!--begin:Menu item-->
+								@can('users.form')
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 										<span class="menu-link">
 											<!--begin:Menu link-->
@@ -718,8 +719,10 @@
 											</div>
 										</div>
 										<!--end:Menu sub-->
-									</div>
+									</div>		
 									<!--end:Menu item-->
+								@endcan
+								@can('users.show')
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 										<!--begin:Menu link-->
@@ -745,6 +748,8 @@
 											<!--end:Menu link-->
 										</a>
 									</div>
+								@endcan
+								@can('users.show')
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 										<!--begin:Menu link-->
@@ -770,6 +775,8 @@
 										</a>
 										<!--end:Menu link-->
 									</div>
+								@endcan
+								@can('users.create')
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 										<!--begin:Menu link-->
@@ -811,7 +818,7 @@
 													<!--begin:Menu item-->
 													<div class="menu-item">
 														<!--begin:Menu link-->
-														<a class="menu-link" href="{{ url('users/ver') }}">
+														<a class="menu-link" href="{{ url('ssvv/lista') }}">
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
@@ -836,7 +843,6 @@
 												<!--end:Menu sub-->
 											</div>
 											<!--end:Menu item-->
-
 											<!--begin:Menu item-->
 											<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 												<!--begin:Menu link-->
@@ -865,7 +871,8 @@
 												</div>
 											</div>    
 										</div>
-									</div>    
+									</div>
+								@endcan    
 								</div> 
 							</div>
 						</div>
@@ -880,19 +887,12 @@
 								<!--begin::Toolbar container-->
 								<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
 									<!--begin::Page title-->
-
-
 									@yield('content')
-
-
-									<!--end::Page title-->
-									
+									<!--end::Page title-->									
 								</div>
 								<!--end::Toolbar container-->
 							</div>
 							<!--end::Toolbar-->
-							<!--begin::Content-->
-							
 							<!--end::Content-->
 						</div>
 						<!--end::Content wrapper-->

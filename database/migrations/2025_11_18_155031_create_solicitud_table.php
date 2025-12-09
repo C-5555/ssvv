@@ -15,11 +15,12 @@ return new class extends Migration
         Schema::create('solicitud', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_empleado');
-            $table->date('dias_solicitados');
-            $table->boolean('status')->default(true); 
+            $table->enum('motivo', ['vacaciones', 'viaticos']);
+            $table->date('fecha_solicitud');
+            $table->enum('estado', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente'); 
             $table->date('fecha_status');
-            $table->foreignId('id_motivo');
             $table->bigInteger('monto_solicitado');
+            $table->text('detalles')->nullable();
             $table->timestamps();
         });
     }

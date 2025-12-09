@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Solicitud;
 use Illuminate\Http\Request;
 
-class SolicitudController extends Controller
+class HistorialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,17 +33,15 @@ class SolicitudController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Solicitud $solicitud)
+    public function show(string $id)
     {
         //
-        $id = Crypt::decryptString($encryptedId);
-        $solicitud = Empleado::findOrFail($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Solicitud $solicitud)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +49,7 @@ class SolicitudController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Solicitud $solicitud)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +57,7 @@ class SolicitudController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Solicitud $solicitud)
+    public function destroy(string $id)
     {
         //
     }

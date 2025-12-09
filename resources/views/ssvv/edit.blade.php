@@ -10,8 +10,8 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="h3">Datos Personales</h1>
         </div>
-    <form class="row g-3" action="{{ route('ssvv.update', $empleado->id) }}" method="POST" enctype="multipart/form-data">
-         @csrf
+        <form class="row g-3" action="{{ route('ssvv.update', $empleado->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
             @method('PUT')
             <div class="card">
                 <div class="card-body">
@@ -45,11 +45,12 @@
                             <label for="email"> Correo</label>
                             <input type="text" class="form-control form-control-lg" id="email" name="email" value="{{ $empleado->email}}" required>
                          </div>
-                         <div class="col-md-6 mb-3">
-                            <label for="rfc"> RFC </label>
-                            <input type="text" class="form-control form-control-lg" id="rfc" name="rfc" value="{{ $empleado->rfc }}" required>
-                         </div>
 
+                        <div class="col-md-6 mb-3">
+                                <label for="rfc">RFC</label>
+                                <input type="text" class="form-control form-control-lg" id="rfc" value="{{ $empleado->user->rfc  }}" disabled>
+                            </div>
+        
                          <div class="col-12 text-end">
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </div>

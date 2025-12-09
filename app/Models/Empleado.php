@@ -16,7 +16,7 @@ class Empleado extends Model
   protected $table = 'empleados';
   protected $primaryKey = 'id';
   protected $fillable = [
-
+    'id_user',
     'nombre',
     'apellido_paterno',
     'apellido_materno',
@@ -24,9 +24,7 @@ class Empleado extends Model
     'puesto',
     'fecha_ingreso',
     'email',
-    'rfc',
-    'status',
-    'id_solicitud'
+    'status'
 
   ];
 
@@ -37,13 +35,17 @@ class Empleado extends Model
  /*  public function empleado(){
     return $this->hasMany('App\User', 'id_empleado', 'id');
   } */
+     public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 
    public function area()
     {
         return $this->belongsTo('App\Models\Area', 'id_area');
     }
 
-  public function solicitudes(){
+  /* public function solicitudes(){
     return $this->hasMany('App\Models\Solicitud', 'id_solicitud', 'id');
   }
 
@@ -51,14 +53,15 @@ class Empleado extends Model
    return $this->hasMany('App\Models\Historial', 'id_historial', 'id');
   }
 
-  public function usuarios(){
-    return $this->hasMany('App\Models\Usuarios', 'id_usuarios', 'id');
-  }
+  public function users()
+    {
+        return $this->belongsTo(Empleado::class, 'id_user');
+    }
 
   public function motivos(){
     return $this->hasMany('App\Models\Motivo', 'id_motivo', 'id');
   }
-
+ */
   
 
    

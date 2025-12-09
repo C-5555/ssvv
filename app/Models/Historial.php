@@ -13,8 +13,9 @@ class historial extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
 
-        'id_empleado',
-        'id_solicitud'
+        'id_solicitud',
+        'accion',
+        'comentarios'
     ];
 
     public $timestamps = true;

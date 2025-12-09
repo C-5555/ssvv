@@ -1,0 +1,10 @@
+[90m= [39m[34;4mApp\Models\Users[39;24m {#5355
+    [34mid[39m: [35m1[39m,
+    [34mname[39m: "[32m1234567890000[39m",
+    [34mrfc[39m: "[32m1234567890000[39m",
+    #[33mpassword[39m: "[32m$2y$12$uHd52KhCVMd/HuBC82QcfOfIUxdLELZ1aOlEzVhdrQcWcA8XeWA9G[39m",
+    #[33mremember_token[39m: [36mnull[39m,
+    [34mcreated_at[39m: "[32m2025-12-01 16:45:49[39m",
+    [34mupdated_at[39m: "[32m2025-12-01 16:45:49[39m",
+  }
+
