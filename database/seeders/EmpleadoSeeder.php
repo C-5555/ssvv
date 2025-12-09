@@ -17,18 +17,16 @@ class EmpleadoSeeder extends Seeder
     public function run(): void
     {
 
-        /* Empleado::create([
-           'nombre' =>'Juan',
+         Empleado::create([
+            'id_user'=> null,
+            'nombre' =>'Juan',
             'apellido_paterno' => 'X',
             'apellido_materno' => 'Y',
             'id_area' => null, 
             'puesto'=> 'Supervisor',
             'fecha_ingreso' => '22-06-2024',
             'email'=> 'juan@gmail.com',
-            'rfc' => '5544875698AS',
-            'foto'=> '.',
             'status' => 'true',
-            'id_solicitud' => '1'
-        ]); */
+        ]); 
     }
 };

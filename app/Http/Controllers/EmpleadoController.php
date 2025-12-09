@@ -50,7 +50,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $empleado=Empleado::get();
+        $empleado = Empleado::with('user')->get();
         return view ('dashboards.listaDatosUsuarios',compact ('empleado')); 
     }
 
@@ -78,7 +78,7 @@ class EmpleadoController extends Controller
 
         
         $user->assignRole($request->roles);
-        
+        //dd($request -> all());
 
        // if ($request->has('role')) {
         //    $user->assignRole($request->role);
@@ -98,7 +98,7 @@ class EmpleadoController extends Controller
        
         $datos_empleado->save();
       
-        dd($request -> all());
+        
 
         $empleados = Empleado::with('user')->get();
 

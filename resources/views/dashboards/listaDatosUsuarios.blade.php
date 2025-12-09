@@ -34,7 +34,7 @@
                @foreach ($empleado as $empleados)
                     <tr class="table-secondary">
                         <td>{{$empleados->id}}</td>
-                        <td>{{$empleados->id_user}}</td>                                               
+                        <td>{{$empleados->id_user}}</td>                                         
                         <td>{{$empleados->user->rfc}}</td>
                         <td>{{$empleados->nombre}}</td>
                         <td>{{$empleados->apellido_paterno}}</td>
