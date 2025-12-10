@@ -6,7 +6,7 @@
 
 
 @section('content')
-<form action="{{ url('ssvv/store') }}" method="post" enctype="multipart/form-data" >
+<form id="_form" action="{{ url('ssvv/store') }}" method="post" enctype="multipart/form-data">
     @csrf 
     @method('POST')
     @include('ssvv._form')

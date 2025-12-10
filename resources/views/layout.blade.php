@@ -966,6 +966,9 @@
 <script src="{{ url ('assets/js/custom/utilities/modals/create-app.js') }} "></script>
 <script src="{{ url ('assets/js/custom/utilities/modals/new-target.js') }} "></script>
 <script src="{{ url ('assets/js/custom/utilities/modals/users-search.js') }} "></script>
+<script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js') }}"></script>
+<script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/localization/messages_es.min.js') }}"></script>
+
 @yield('scripts')
 
 <!--end::Custom Javascript-->

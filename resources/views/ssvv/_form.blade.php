@@ -21,11 +21,11 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="rfc"> RFC</label>
-                    <input type="text" class="form-control" name="rfc" id="rfc" value="{{ isset($user->rfc) ? $user->rfc : '' }}" required>       
+                    <input type="text" maxlength= "13" class="form-control" name="rfc" id="rfc" value="{{ isset($user->rfc) ? $user->rfc : '' }}" required>       
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="nickname"> Nickname</label>
-                    <input type="text" class="form-control" name="nickname" id="nickname"value="{{ isset($user->name) ? $user->name : '' }}" required>
+                    <input type="text" class="form-control" name="nickname" id="nickname" value="{{ isset($user->name) ? $user->name : '' }}" required>
                     </div>
                 <div class="col-md-6 mb-3">
                     <label for="password"> Password</label>
@@ -63,3 +63,7 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+<script src="{{ url('assets/js/usuarios/_form.js') }}"></script>
+@endsection
