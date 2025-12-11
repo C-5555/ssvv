@@ -28,8 +28,9 @@
                     <input type="text" class="form-control" name="nickname" id="nickname" value="{{ isset($user->name) ? $user->name : '' }}" required>
                     </div>
                 <div class="col-md-6 mb-3">
-                    <label for="password"> Password</label>
-                    <input type="text" class="form-control" name="password" id="password" value="{{ isset($user->password) ? $user->password : '' }}" required>                        
+                    <label for="password"> Password</label>                   
+                    <input class="form-control bg-transparent" type="password" placeholder="Password" name="password" autocomplete="off" id="password" value="{{ isset($user->password) ? $user->password : '' }}" required>     
+                    <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                 </div>
                 <div class="col-md-6 mb-3"> 
                     <label for="id_area"> Área</label>

@@ -64,53 +64,67 @@ class EmpleadoController extends Controller
         return view ('ssvv.create', compact ('empleado', 'user', 'roles')); 
     }
     
-     public function store(Request $request)
-    {
-        //dd($request->roles);
-      try { 
-        
+   public function store(Request $request)
+{
+    try {
+
+         if (Users::where('rfc', $request->rfc)->exists()) {
+            return response()->json([
+                'success' => false,
+                'error_type' => 'rfc_duplicado',
+                'message' => 'El RFC ya está registrado. No puedes crear dos usuarios con el mismo RFC.'
+            ]);
+        }
+
         $user = new Users;
         $user->rfc = $request->rfc;
         $user->password = Hash::make($request->password);
-        $user->name = $request->nickname; 
-        //dd($request -> all());
+        $user->name = $request->nickname;
         $user->save();
 
-        
+        // Asignar rol
         $user->assignRole($request->roles);
-        //dd($request -> all());
 
-       // if ($request->has('role')) {
-        //    $user->assignRole($request->role);
-        //} else {
-          //  $user->assignRole('Empleado'); // Rol por defecto }
-
-        $datos_empleado = new Empleado; 
+        // Guardar datos de empleado
+        $datos_empleado = new Empleado;
         $datos_empleado->id_user = $user->id;
-        $datos_empleado->nombre = $request->nombre;       
-        $datos_empleado->apellido_paterno =$request->apellido_paterno;
-        $datos_empleado->apellido_materno =$request->apellido_materno;
-        $datos_empleado->id_area =$request->id_area;
-        $datos_empleado->puesto =$request->puesto;
-        $datos_empleado->fecha_ingreso =$request->fecha_ingreso;
-        $datos_empleado->email=$request->email;
+        $datos_empleado->nombre = $request->nombre;
+        $datos_empleado->apellido_paterno = $request->apellido_paterno;
+        $datos_empleado->apellido_materno = $request->apellido_materno;
+        $datos_empleado->id_area = $request->id_area;
+        $datos_empleado->puesto = $request->puesto;
+        $datos_empleado->fecha_ingreso = $request->fecha_ingreso;
+        $datos_empleado->email = $request->email;
         $datos_empleado->status = true;
-       
         $datos_empleado->save();
-      
-        
 
-        $empleados = Empleado::with('user')->get();
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Empleado creado correctamente.',
+                'redirect' => route('ssvv.listadatos')
+            ]);
+        }
 
-        return redirect()->route('ssvv.listadatos')->with('success', 'Empleado actualizado correctamente.');
+        return redirect()
+            ->route('ssvv.listadatos')
+            ->with('success', 'Empleado creado correctamente.');
 
-         }  catch (\Exception $e) {
+    } catch (\Exception $e) {
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error: ' . $e->getMessage()
+            ], 500);
+        }
+
         return redirect()->back()
-            ->withInput() // Para mantener los datos del formulario
+            ->withInput()
             ->with('error', 'Error: ' . $e->getMessage());
-         }
-        
-    } 
+    }
+}
+
     
     public function find(Request $request)
     {

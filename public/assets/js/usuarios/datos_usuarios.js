@@ -73,22 +73,31 @@ $(document).ready(function () {
             },
         ],
     });
-
     $('#tablaDatosUsuarios').on('click', '.cambio-status', function () {
         var button = $(this);
         var encryptedId = button.data('id');
         var currentStatus = button.data('status');
         var action = currentStatus ? 'desactivar' : 'activar';
-        var confirmMessage = `¿Estás seguro que deseas ${action} este empleado?`;
 
-        if (confirm(confirmMessage)) {
-            cambioUserStatus(encryptedId, button);
-        }
+        Swal.fire({
+            title: `¿Estás seguro que deseas ${action} este empleado?`,
+            text: `El empleado será ${action}do.`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, continuar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                cambioUserStatus(encryptedId, button, action);
+            }
+        });
     });
 });
 
-function cambioUserStatus(encryptedId, button) {
+
+function cambioUserStatus(encryptedId, button, action) {
     var encodedId = encodeURIComponent(encryptedId);
+
     $.ajax({
         url: `${url}/ssvv/desactivar/${encodedId}`,
         type: 'PUT',
@@ -96,19 +105,40 @@ function cambioUserStatus(encryptedId, button) {
             _token: $('meta[name="csrf-token"]').attr('content'),
             _method: 'PUT'
         },
+
         beforeSend: function () {
-            button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Procesando...');
+            button.prop('disabled', true)
+                .html('<i class="fas fa-spinner fa-spin"></i>');
         },
+
         success: function (response) {
-            $('#tablaUsuarios').DataTable().ajax.reload();
-            alert(response.mensaje || 'Estado actualizado correctamente');
+
+            $('#tablaDatosUsuarios').DataTable().ajax.reload(null, false);
+
+            Swal.fire({
+                icon: "success",
+                title: `Empleado ${action}do correctamente`,
+                text: response.mensaje || "El cambio se realizó con éxito.",
+                timer: 2000,
+                showConfirmButton: false
+            });
+
+            button.prop('disabled', false);
         },
-        error: function (xhr) {
-            alert('Error al actualizar el estado');
+
+        error: function () {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo actualizar el estado",
+                confirmButtonText: "Entendido"
+            });
             button.prop('disabled', false);
         }
     });
 }
+
+
 
 function verUsuario(encryptedId) {
     var encodedId = encodeURIComponent(encryptedId);

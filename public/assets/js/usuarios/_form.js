@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
     $.validator.addMethod("rfc", function (value, element) {
-        var pattern = /^[A-ZÑ&]{3,4}\d{8}[A-V1-9][A-Z1-9][0-9A]$/;
+        var pattern = /^[A-ZÑ&]{3,4}\d{6}[A-V1-9][A-Z1-9][0-9A]$/;
         return this.optional(element) || pattern.test(value.toUpperCase());
     }, "Por favor, ingresa un RFC válido (10 o 13 caracteres)");
 
@@ -203,10 +203,16 @@ $(document).ready(function () {
 
                         // Redirigir después de 2 segundos si hay URL de redirección
                         if (response.redirect) {
-                            setTimeout(function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message || 'Usuario creado correctamente',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
                                 window.location.href = response.redirect;
-                            }, 2000);
-                        } else {
+                            });
+                        }
+                        else {
                             // Recargar la página
                             setTimeout(function () {
                                 location.reload();
@@ -230,29 +236,27 @@ $(document).ready(function () {
     });
 
     // Función para mostrar mensajes
-    function mostrarMensaje(tipo, mensaje) {
-        // Eliminar mensajes anteriores
-        $('.alert-dismissible').remove();
+    function mostrarMensaje(tipo, mensaje, extra = null) {
+        let icon = tipo; // success / error / warning / info
 
-        var alertClass = tipo === 'success' ? 'alert-success' : 'alert-danger';
-        var icon = tipo === 'success' ? '✓' : '✗';
-
-        var alertHtml = `
-            <div class="alert ${alertClass} alert-dismissible fade show mt-3" role="alert">
-                <strong>${icon}</strong> ${mensaje}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
-
-        $('.card-body').prepend(alertHtml);
-
-        // Auto-ocultar después de 5 segundos para éxito
-        if (tipo === 'success') {
-            setTimeout(function () {
-                $('.alert-success').alert('close');
-            }, 5000);
+        if (extra === 'rfc_duplicado') {
+            Swal.fire({
+                icon: 'error',
+                title: 'RFC duplicado',
+                text: 'Ya existe un usuario registrado con este RFC. Verifica los datos.',
+                confirmButtonText: 'Entendido'
+            });
+            return;
         }
+
+        Swal.fire({
+            icon: icon,
+            title: mensaje,
+            showConfirmButton: false,
+            timer: tipo === 'success' ? 2000 : 3000
+        });
     }
+
 
     // Validar RFC en tiempo real (para formato)
     $('#rfc').on('input', function () {
@@ -273,15 +277,5 @@ $(document).ready(function () {
             mostrarMensaje('warning', 'La fecha de ingreso no puede ser futura');
             $(this).val('');
         }
-    });
-
-    // Botón para mostrar/ocultar contraseña
-    $('#password, #confirmar_password').after('<button type="button" class="btn btn-sm btn-outline-secondary mt-1 toggle-password">Mostrar</button>');
-
-    $('.toggle-password').click(function () {
-        var input = $(this).prev('input');
-        var type = input.attr('type') === 'password' ? 'text' : 'password';
-        input.attr('type', type);
-        $(this).text(type === 'password' ? 'Mostrar' : 'Ocultar');
     });
 });

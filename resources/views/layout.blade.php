@@ -29,6 +29,8 @@
 	<link href="{{ url('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<!--end::Global Stylesheets Bundle-->
 	<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
+	<script src="{{ url('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -968,6 +970,7 @@
 <script src="{{ url ('assets/js/custom/utilities/modals/users-search.js') }} "></script>
 <script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/localization/messages_es.min.js') }}"></script>
+<script src="{{ url ('https://cdn.jsdelivr.net/npm/sweetalert2@11' ) }}"></script>
 
 @yield('scripts')
 

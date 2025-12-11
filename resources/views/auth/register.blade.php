@@ -61,21 +61,9 @@
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Hint-->
-                            <div class="text-muted">Usar de 8 a más caracteres con mezcla de letras, números y símbolos.</div>
+                            <div class="text-muted">Usar de 6 a más caracteres con mezcla de letras, números y símbolos.</div>
                             <!--end::Hint-->
                             @error('password')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!--end::Input group-->
-                        
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-8">
-                            <!--begin::Repeat Password-->
-                            <input placeholder="Repeat Password" name="password_confirmation" 
-                                   type="password" autocomplete="off" class="form-control bg-transparent" />
-                            <!--end::Repeat Password-->
-                            @error('password_confirmation')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
