@@ -16,8 +16,7 @@
 	<meta property="og:site_name" content="Keenthemes | Metronic" />
 	<link rel="canonical" href="{{ url('https://preview.keenthemes.com/metronic8') }}" />
 	<link rel="icon" type="image/x-icon" href="{{ url('assets/media/logos/favicon.ico') }}" />
-	<link rel="stylesheet" href="{{ url('https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css') }}" />
-	 
+	<link rel="stylesheet" href="{{ url('assets/css/dataTables.css') }}" />
 	<!--begin::Fonts-->
 	<link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700') }}" />
 	<!--end::Fonts-->
