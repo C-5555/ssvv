@@ -498,71 +498,78 @@
 										<!--end::Theme mode-->
 										<!--begin::User menu-->
 										<div class="app-navbar-item ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
-											<!--begin::Menu wrapper-->
 											<div class="cursor-pointer symbol symbol-35px symbol-md-40px"
-												data-kt-menu-trigger="click" data-kt-menu-attach="parent"
+												data-kt-menu-trigger="click"
+												data-kt-menu-attach="parent"
 												data-kt-menu-placement="bottom-end">
+												
 												<img src="{{ url('assets/media/avatars/300-1.jpg') }}" />
 											</div>
-											<!--begin::User account menu-->
-											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+
+											<!-- User account menu -->
+											<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 
+												menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
 												data-kt-menu="true">
-												<!--begin::Menu item-->
+
+												<!-- User info -->
 												<div class="menu-item px-3">
 													<div class="menu-content d-flex align-items-center px-3">
-														<!--begin::Avatar-->
+
+														<!-- Avatar -->
 														<div class="symbol symbol-50px me-5">
-															<img alt="Logo" src="{{ url('assets/media/avatars/300-1.jpg') }}" />
+															<img alt="User" src="{{ url('assets/media/avatars/300-1.jpg') }}" />
 														</div>
-														<!--end::Avatar-->
-														<!--begin::Username-->
+
+														<!-- Username -->
 														<div class="d-flex flex-column">
-															<div class="fw-bold d-flex align-items-center fs-5">Max Smith
-																<span
-																	class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
+															<div class="fw-bold d-flex align-items-center fs-5">
+																@if(Auth::check())
+																	{{ Auth::user()->name }}
+																@endif
 															</div>
-															<a href="#"
-																class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+
+															<span class="fw-semibold text-muted fs-7">
+																@if(Auth::check())
+																	{{ Auth::user()->empleado->email}}
+																@endif
+															</span>
+
+															<span class="fw-semibold text-muted fs-7">
+																@if(Auth::check())
+																	RFC: {{ Auth::user()->rfc }}
+																@endif
+															</span>
 														</div>
-														<!--end::Username-->
 													</div>
 												</div>
-												<!--end::Menu item-->
-												<!--begin::Menu separator-->
+
 												<div class="separator my-2"></div>
-												<!--end::Menu separator-->
-												<!--begin::Menu item-->
+
+												<!-- Profile -->
 												<div class="menu-item px-5">
-													<a href="{{ url('ssvv/usuario') }}" class="menu-link px-5">My
-														Profile</a>
+													<a href="{{ url('ssvv/usuario') }}" class="menu-link px-5">Mi perfil</a>
 												</div>
-												<!--end::Menu item-->
-												<!--begin::Menu item-->
+
+												<!-- Settings -->
 												<div class="menu-item px-5">
-													<a href="../../demo1/dist/account/statements.html" class="menu-link px-5">My
-														Statements</a>
+													<a href="{{ url('ssvv/index') }}" class="menu-link px-5">Configuración</a>
 												</div>
-												<!--end::Menu item-->
-												<!--begin::Menu separator-->
+
 												<div class="separator my-2"></div>
-												<!--end::Menu separator-->
-												<!--begin::Menu item-->
-												<div class="menu-item px-5 my-1">
-													<a href="{{ url('ssvv/index') }}" class="menu-link px-5">Configuración de la cuenta</a>
-												</div>
-												<!--end::Menu item-->
-												<!--begin::Menu item-->
+
+												<!-- Logout -->
 												<div class="menu-item px-5">
-													<a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html"
-														class="menu-link px-5">Sign Out</a>
+													<form action="{{ route('logout') }}" method="POST">
+														@csrf
+														<button class="menu-link px-5 btn btn-link p-0 m-0 text-start">
+															Cerrar sesión
+														</button>
+													</form>
 												</div>
-												<!--end::Menu item-->
 											</div>
-											<!--end::User account menu-->
-										</div>    
-										<!--end::Menu wrapper-->
-									</div>
-									<!--end::User menu-->
+										</div>
+										<!--end::User menu-->
+									</div>	
 								</div>
 								<!--end::Navbar-->
 							</div>

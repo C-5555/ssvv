@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
-use App\Http\Controllers\PermissionsController; // ← Corregido el nombre
+use App\Http\Controllers\PermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,7 @@ use App\Http\Controllers\PermissionsController; // ← Corregido el nombre
 */
 
 // Rutas PÚBLICAS
-Route::get('/ssvv', function () {
-    return view('ssvv.index'); 
-});
+
 
 Route::get('/ssvv/create',[EmpleadoController::class, 'create']) -> name('ssvv.create');
 
@@ -64,9 +63,11 @@ Route::get('ssvv/ver', function () {
 
 
 // Rutas de AUTENTICACIÓN (públicas)
-Route::get('ssvv/login', function () {
-    return view('auth.login');
-})->name('login');
+
+
+Route::get('ssvv/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('ssvv/registro', function () {
     return view('auth.register');
@@ -96,22 +97,27 @@ Route::get('ssvv/two', function () {
 // Rutas de controlador EMPLEADOS (públicas por ahora)
 Route::get('/ssvv/ajax/data', [EmpleadoController::class, 'getEmpleado'])->name('ajaxroute');
 
-Route::get('/ssvv/ver/{encryptedId}', [EmpleadoController::class, 'show'])->name('ssvv.show');
-
-Route::get('/ssvv/editar/{encryptedId}', [EmpleadoController::class, 'edit'])->name('ssvv.edit');
-
-Route::put('/ssvv/update/{encryptedId}', [EmpleadoController::class, 'update'])->name('ssvv.update');
-
-
-Route::get('/ssvv/permisos/{encryptedId}', [EmpleadoController::class, 'permisos'])->name('ssvv.permisos');
-
-Route::put('/ssvv/desactivar/{encryptedId}', [EmpleadoController::class, 'destroy'])->name('ssvv.cambio-status');
-
-Route::get('/ssvv/listadatos', [EmpleadoController::class, 'index'])->name('ssvv.listadatos');
-
 Route::post('/ssvv/store', [EmpleadoController::class, 'store']) -> name('ssvv.store');
 // ======== RUTAS PROTEGIDAS CON AUTENTICACIÓN ========
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'empleado.activo'])->group(function () {
+    // rutas protegidas
+
+
+    Route::get('/ssvv', function () {
+    return view('ssvv.index'); 
+    });
+    Route::get('/ssvv/ver/{encryptedId}', [EmpleadoController::class, 'show'])->name('ssvv.show');
+
+    Route::get('/ssvv/editar/{encryptedId}', [EmpleadoController::class, 'edit'])->name('ssvv.edit');
+
+    Route::put('/ssvv/update/{encryptedId}', [EmpleadoController::class, 'update'])->name('ssvv.update');
+
+
+    Route::get('/ssvv/permisos/{encryptedId}', [EmpleadoController::class, 'permisos'])->name('ssvv.permisos');
+
+    Route::put('/ssvv/desactivar/{encryptedId}', [EmpleadoController::class, 'destroy'])->name('ssvv.cambio-status');
+
+    Route::get('/ssvv/listadatos', [EmpleadoController::class, 'index'])->name('ssvv.listadatos');
 
     // ======== RUTAS DE USUARIOS ========
     Route::get('/users', [UsersController::class, 'index'])->middleware('permission:users.index')->name('users.index');

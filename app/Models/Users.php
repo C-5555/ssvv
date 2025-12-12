@@ -29,6 +29,11 @@ class Users extends Authenticatable
 
 
     public $timestamps = true;
+    
+    public function getAuthIdentifierName()
+    {
+    return 'rfc';
+    }
 
     public function empleado()
     {
