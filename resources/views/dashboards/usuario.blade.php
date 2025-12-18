@@ -17,11 +17,11 @@
 			</div>
 			<!--end::Card title-->
 			<!--begin::Action--> 	
-			<div class="col-12 text-end mt-3">
-					<a href="{{ route('ssvv.edit', Crypt::encryptString(Auth::user()->empleado->id)) }}"
-						class="btn btn-primary btn-lg">
+			<div class= "card-title m-0" >
+				<a href="{{ route('ssvv.edit', Crypt::encryptString(Auth::user()->empleado->id)) }}"
+					class="btn btn-primary btn-lg">
 						Editar Perfil
-					</a>
+				</a>
             </div>
 			<!--end::Action-->
 		</div>
