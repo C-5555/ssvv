@@ -136,9 +136,9 @@ class EmpleadoController extends Controller
     public function show($encryptedId)
     {
         $decryptedId = Crypt::decryptString($encryptedId);
-        $empleado = Empleado::with('user')->findOrFail($decryptedId);
+        $empleado = Empleado::with('user', 'roles')->findOrFail($decryptedId);
         
-        return view('ssvv.show', compact('empleado'));
+        return view('ssvv.show', compact('empleado', 'roles'));
     }
        
 
@@ -146,15 +146,17 @@ class EmpleadoController extends Controller
     {
         $decryptedId = Crypt::decryptString($encryptedId);
         $empleado = Empleado::with('user')->findOrFail($decryptedId);
+        $roles=Role::get();
         
-        return view('ssvv.edit', compact('empleado'));
+        return view('ssvv.edit', compact('empleado', 'roles'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $encryptedId)
     {
-        $empleado = Empleado::findOrFail($id);
-        $datos_empleado = $request->except(['_token', '_method', 'rfc']);
+        $id = Crypt::decryptString($encryptedId);
+        $empleado = Empleado::with('user')->findOrFail($id);
+        $datos_empleado = $request->except(['_token', '_method', 'rfc', 'roles']);
         $empleado->update($datos_empleado);
 
     if ($empleado->user && $request->has('rfc')) {
@@ -162,7 +164,10 @@ class EmpleadoController extends Controller
             'rfc' => $request->rfc
         ]);
         }
-        return redirect()->route('ssvv.listadatos')->with('success', 'Empleado actualizado correctamente.');
+    if ($empleado->user && $request->filled('roles')) {
+        $empleado->user->syncRoles($request->roles);
+    }
+    return redirect()->route('ssvv.usuario')->with('success', 'Empleado actualizado correctamente.');
     }
     
 

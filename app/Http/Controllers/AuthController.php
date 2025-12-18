@@ -51,7 +51,6 @@ class AuthController extends Controller
         'password' => 'required'
     ]);
 
-    // Traer user + empleado
     $user = Users::with('empleado')->where('rfc', $request->rfc)->first();
 
     if (!$user) {
@@ -68,7 +67,6 @@ class AuthController extends Controller
         ], 401);
     }
 
-    // Si no tiene registro en empleados → bloquear
     if (!$user->empleado) {
         return response()->json([
             'success' => false,
@@ -76,7 +74,6 @@ class AuthController extends Controller
         ], 403);
     }
 
-    // Validación real del status
     if ($user->empleado->status == 0) {
         return response()->json([
             'success' => false,
@@ -84,7 +81,6 @@ class AuthController extends Controller
         ], 403);
     }
 
-    // Todo bien → iniciar sesión
     Auth::login($user);
 
     return response()->json([
