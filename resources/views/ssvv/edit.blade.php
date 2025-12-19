@@ -41,17 +41,19 @@
                             <label for="puesto"> Puesto </label>
                             <input type="text" class="form-control form-control-lg" id="puesto" name="puesto" value="{{ $empleado->puesto }}" required>
                          </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="roles">Rol asignado</label> 
-                            <select name="roles" class="form-select">
-                                @foreach($roles as $role)
-                                    <option value="{{ $role->name }}"
-                                        {{$empleado->user->hasRole($role->name) ? 'selected' : '' }}>
-                                        {{$role->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        @can('users.create')
+                            <div class="col-md-6 mb-3">
+                                <label for="roles">Rol asignado</label> 
+                                <select name="roles" class="form-select">
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->name }}"
+                                            {{$empleado->user->hasRole($role->name) ? 'selected' : '' }}>
+                                            {{$role->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @endcan
                          <div class="col-md-6 mb-3">
                             <label for="fecha_ingreso"> Fecha de ingreso </label>
                             <input type="text" class="form-control form-control-lg" id="fecha_ingreso" name="fecha_ingreso" value="{{ $empleado->fecha_ingreso }}" required>

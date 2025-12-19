@@ -21,7 +21,7 @@ class EmpleadoController extends Controller
                     'id' => Crypt::encryptString($empleado->id),
                     'id_raw' => $empleado->id,
                     'id_user'=>Crypt::encryptString($empleado->id_user),
-                    'rfc' => $empleado->user->rfc ?? 'Sin RFC',
+                    'rfc' => $empleado->user->rfc,
                     'nombre' => $empleado->nombre,
                     'apellido_paterno' => $empleado->apellido_paterno,
                     'apellido_materno' =>$empleado->apellido_materno,
@@ -136,8 +136,8 @@ class EmpleadoController extends Controller
     public function show($encryptedId)
     {
         $decryptedId = Crypt::decryptString($encryptedId);
-        $empleado = Empleado::with('user', 'roles')->findOrFail($decryptedId);
-        
+        $empleado = Empleado::with('user')->findOrFail($decryptedId);
+        $roles=Role::get();
         return view('ssvv.show', compact('empleado', 'roles'));
     }
        

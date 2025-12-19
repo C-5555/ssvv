@@ -15,18 +15,28 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        $permisos = [
+            'users.index',
+            'users.show',
+            'users.create',
+            'users.update',
+            'users.delete',
+            'users.form',
 
-    $permisos = [
-    'users.index','users.show', 'users.create', 'users.update', 'users.delete', 'users.form', 
+            'roles.index',
+            'roles.create',
+            'roles.update',
+            'roles.delete',
 
-    'roles.index', 'roles.create', 'roles.update', 'roles.delete',
+            'permissions.index',
+            'permissions.create',
+            'permissions.delete',
+        ];
 
-    'permissions.index', 'permissions.create', 'permissions.delete',
-    ];
-    foreach ($permisos as $p) {
-    Permission::findOrCreate($p, 'web');
+        foreach ($permisos as $permiso) {
+            Permission::firstOrCreate(
+                ['name' => $permiso, 'guard_name' => 'web']
+            );
+        }
     }
-
-    
-    }    
 }

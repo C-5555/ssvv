@@ -27,7 +27,7 @@ class EnsureEmpleadoActivo
             if ($request->expectsJson()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Tu usuario está INACTIVO. Contacta al administrador.'
+                    'message' => 'Tu usuario está inactivo. Contacta al administrador.'
                 ], 403);
             }
             return redirect()->route('login')

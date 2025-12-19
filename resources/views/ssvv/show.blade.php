@@ -19,9 +19,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="nombre"> Nombre </label>
                             <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" value="{{ $empleado->nombre }}" disabled>
-
                         </div>
-
                         <div class="col-md-6 mb-3">
                             <label for="apellido_paterno"> Apellido paterno</label>
                             <input type="text" class="form-control form-control-lg" id="apellido_paterno" name="apellido_paterno" value="{{ $empleado->apellido_paterno }}" disabled>
@@ -29,6 +27,10 @@
                         <div class="col-md-6 mb-3">
                             <label for="apellido_materno"> Apellido materno</label>
                             <input type="text" class="form-control form-control-lg" id="apellido_materno" name="apellido_materno" value="{{ $empleado->apellido_materno }}" disabled>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nombre de Usuario</label>
+                            <input type="text" name="user_name" class="form-control" value="{{ $empleado->user->name }}" disabled>
                         </div>
                         <div class="col-md-6 mb-3"> 
                             <label for="id_area"> Área</label>
@@ -38,6 +40,17 @@
                             <label for="puesto"> Puesto </label>
                             <input type="text" class="form-control form-control-lg" id="puesto" name="puesto" value="{{ $empleado->puesto }}" disabled>
                          </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="roles">Rol asignado</label> 
+                            <select name="roles" class="form-select" disabled >
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->name }}" 
+                                        {{$empleado->user->hasRole($role->name) ? 'selected' : '' }}>
+                                        {{$role->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                          <div class="col-md-6 mb-3">
                             <label for="fecha_ingreso"> Fecha de ingreso </label>
                             <input type="text" class="form-control form-control-lg" id="fecha_ingreso" name="fecha_ingreso" value="{{ $empleado->fecha_ingreso }}" disabled>
@@ -46,8 +59,8 @@
                             <label for="email"> Correo</label>
                             <input type="text" class="form-control form-control-lg" id="email" name="email" value="{{ $empleado->email}}" disabled>
                          </div>
-                         
-                            <div class="col-md-6 mb-3">
+
+                        <div class="col-md-6 mb-3">
                                 <label for="rfc">RFC</label>
                                 <input type="text" class="form-control form-control-lg" id="rfc" value="{{ $empleado->user->rfc  }}" disabled>
                             </div>

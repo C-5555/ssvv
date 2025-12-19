@@ -22,6 +22,7 @@ Route::middleware(['auth', 'empleado.activo'])->group(function () {
     Route::get('/ssvv/usuario', function () {
     return view('dashboards.usuario');
     })->name('ssvv.usuario');
+    Route::get('/ssvv/ajax/data', [EmpleadoController::class, 'getEmpleado'])->name('ajaxroute');
 
 
     Route::get('/ssvv/status', fn () => view('dashboards.status'));
@@ -31,7 +32,10 @@ Route::middleware(['auth', 'empleado.activo'])->group(function () {
 
     Route::get('/ssvv/listadatos', [EmpleadoController::class, 'index'])
         ->name('ssvv.listadatos');
+    Route::get('ssvv/lista', function () { return view('dashboards.listaUsuario'); });
 
+    Route::get('ssvv/roles', function () { return view('dashboards.listaRoles'); });
+    
     Route::get('/ssvv/create', [EmpleadoController::class, 'create'])
         ->name('ssvv.create');
 
