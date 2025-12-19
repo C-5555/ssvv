@@ -29,7 +29,7 @@
 	<!--end::Global Stylesheets Bundle-->
 	<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
 	<script src="{{ url('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
-
+	
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
