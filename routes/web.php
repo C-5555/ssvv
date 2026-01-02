@@ -28,7 +28,7 @@ Route::middleware(['auth', 'empleado.activo'])->group(function () {
     Route::get('/ssvv/status', fn () => view('dashboards.status'));
     Route::get('/ssvv/viaticos', fn () => view('dashboards.viaticos'));
     Route::get('/ssvv/vacaciones', fn () => view('dashboards.vacaciones'));
-    Route::get('/ssvv/mensajes', fn () => view('dashboards.mensajes'));
+    Route::get('/ssvv/solicitudes', fn () => view('dashboards.solicitudes'));
 
     Route::get('/ssvv/listadatos', [EmpleadoController::class, 'index'])
         ->name('ssvv.listadatos');

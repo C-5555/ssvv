@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href=""/>
-	<title>Ssvv</title>
-	<meta charset="utf-8" />
-	<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask & Laravel versions. Grab your copy now and get life-time updates for free." />
-	<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Blazor, Django, Flask & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme" />
-	<meta property="og:url" content="{{ url('https://keenthemes.com/metronic') }}" />
-	<meta property="og:site_name" content="Keenthemes | Metronic" />
-	<link rel="canonical" href="{{ url('https://preview.keenthemes.com/metronic8') }}" />
-	<link rel="icon" type="image/x-icon" href="{{ url('assets/media/logos/favicon.ico') }}" />
-	<link rel="stylesheet" href="{{ url('assets/css/dataTables.css') }}" />
-	<!--begin::Fonts-->
-	<link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700') }}" />
-	<!--end::Fonts-->
-	<!--begin::Vendor Stylesheets(used by this page)-->
-	<!--end::Vendor Stylesheets-->
-	
-	<!--begin::Global Stylesheets Bundle(used by all pages)-->
-	<link href="{{ url('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-	<link href="{{ url('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-	<!--end::Global Stylesheets Bundle-->
-	<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
-	<script src="{{ url('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
-	
+		<title>Ssvv</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask & Laravel versions. Grab your copy now and get life-time updates for free." />
+		<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Blazor, Django, Flask & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme" />
+		<meta property="og:url" content="{{ url('https://keenthemes.com/metronic') }}" />
+		<meta property="og:site_name" content="Keenthemes | Metronic" />
+		<link rel="canonical" href="{{ url('https://preview.keenthemes.com/metronic8') }}" />
+		<link rel="icon" type="image/x-icon" href="{{ url('assets/media/logos/favicon.ico') }}" />
+		<link rel="stylesheet" href="{{ url('assets/css/dataTables.css') }}" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700') }}" />
+		<!--end::Fonts-->
+		<!--begin::Vendor Stylesheets(used by this page)-->
+		<!--end::Vendor Stylesheets-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="{{ url('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ url('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+		<link rel="stylesheet" href="{{ url('assets/css/styles.css') }}" />
+		<script src="{{ url('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
+		<link href="{{ url('https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ url('assets/css/estilos.css') }}" type="text/css" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -715,11 +714,11 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link" href="{{ url('ssvv/mensajes') }}">
+												<a class="menu-link" href="{{ url('ssvv/solicitudes') }}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
-													<span class="menu-title">Mensajes</span>
+													<span class="menu-title">Solicitudes</span>
 													<span class="menu-badge"></span>
 													<span class="badge badge-success">3</span>   
 												</a>
@@ -891,9 +890,9 @@
 						<!--begin::Content wrapper-->
 						<div class="d-flex flex-column flex-column-fluid">
 							<!--begin::Toolbar-->
-							<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+							<div id="kt_app_toolbar">
 								<!--begin::Toolbar container-->
-								<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+								<div id="kt_app_toolbar_container">
 									<!--begin::Page title-->
 									@yield('content')
 									<!--end::Page title-->									
@@ -953,34 +952,36 @@
 		</div>
 		<!--end::Scrolltop-->
 
-<!--begin::Javascript-->    
-<script type="text/javascript">
-	var url = '{{ url("/") }}'
-</script>	
-<!--<script> var hostUrl = '{{-- hostUrl("assets/") --}}' </script>-->
-<!--begin::Global Javascript Bundle(used by all pages)-->
-<script src="{{ url('assets/plugins/global/plugins.bundle.js') }}"></script>
+		<!--begin::Javascript-->    
+		<script type="text/javascript">
+			var url = '{{ url("/") }}'
+		</script>	
+		<!--<script> var hostUrl = '{{-- hostUrl("assets/") --}}' </script>-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="{{ url('assets/plugins/global/plugins.bundle.js') }}"></script>
 
-<!--end::Global Javascript Bundle-->
-<!--begin::Vendors Javascript(used by this page)-->
-<script src="{{ url('https://cdn.amcharts.com/lib/5/index.js') }}"></script>
-<script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
-<script src="{{ url('https://cdn.datatables.net/2.3.4/js/dataTables.js') }}"></script>
-<!--end::Vendors Javascript-->
-<!--begin::Custom Javascript(used by this page)-->
-<script src="{{ url('assets/js/scripts.bundle.js') }}"></script>
-<script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>
-<script src="{{ url ('assets/js/custom/widgets.js') }} "></script>
-<script src="{{ url ('assets/js/custom/utilities/modals/create-app.js') }} "></script>
-<script src="{{ url ('assets/js/custom/utilities/modals/new-target.js') }} "></script>
-<script src="{{ url ('assets/js/custom/utilities/modals/users-search.js') }} "></script>
-<script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js') }}"></script>
-<script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/localization/messages_es.min.js') }}"></script>
-<script src="{{ url ('https://cdn.jsdelivr.net/npm/sweetalert2@11' ) }}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Vendors Javascript(used by this page)-->
+		<script src="{{ url('https://cdn.amcharts.com/lib/5/index.js') }}"></script>
+		<script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
+		<script src="{{ url('https://cdn.datatables.net/2.3.4/js/dataTables.js') }}"></script>
+		<!--end::Vendors Javascript-->
+		<!--begin::Custom Javascript(used by this page)-->
+		<script src="{{ url('assets/js/scripts.bundle.js') }}"></script>
+		<script src="{{ url ('assets/js/widgets.bundle.js') }}"></script>
+		<script src="{{ url ('assets/js/custom/widgets.js') }} "></script>
+		<script src="{{ url ('assets/js/custom/utilities/modals/create-app.js') }} "></script>
+		<script src="{{ url ('assets/js/custom/utilities/modals/new-target.js') }} "></script>
+		<script src="{{ url ('assets/js/custom/utilities/modals/users-search.js') }} "></script>
+		<script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js') }}"></script>
+		<script src="{{ url ('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/localization/messages_es.min.js') }}"></script>
+		<script src="{{ url ('https://cdn.jsdelivr.net/npm/sweetalert2@11' ) }}"></script>
 
-@yield('scripts')
 
-<!--end::Custom Javascript-->
+
+		@yield('scripts')
+
+		<!--end::Custom Javascript-->
 	</body>
 	<!--end::Body-->
 </html>

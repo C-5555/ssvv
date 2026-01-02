@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<div class="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
+<div>
 	<!--begin::Timeline widget 3-->
 	<div class="card h-md-100">
 		<!--begin::Header-->
