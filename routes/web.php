@@ -10,6 +10,8 @@ use App\Http\Controllers\PermissionsController;
 
 Route::get('ssvv/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
+Route::post('ssvv/reset', [AuthController::class, 'resetPassword'])->name('auth.resetPassword');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

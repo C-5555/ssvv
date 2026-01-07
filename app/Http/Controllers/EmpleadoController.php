@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage; 
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Users;
+use App\Mail\CorreoPruebas;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -97,6 +99,12 @@ class EmpleadoController extends Controller
         $datos_empleado->email = $request->email;
         $datos_empleado->status = true;
         $datos_empleado->save();
+        try {
+            Mail::to($datos_empleado->email)
+                ->send(new CorreoPruebas());
+        } catch (\Exception $e) {
+        }
+
 
         if ($request->ajax()) {
             return response()->json([
