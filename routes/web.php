@@ -6,12 +6,13 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\EmailController;
 
 
 Route::get('ssvv/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
 Route::post('ssvv/reset', [AuthController::class, 'resetPassword'])->name('auth.resetPassword');
-
+Route::get('/emails/prueba/{user}', [EmailController::class, 'verificar'])->name('emails.prueba');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -114,4 +115,5 @@ Route::middleware(['auth', 'empleado.activo'])->group(function () {
     Route::delete('/permissions/{permission}', [PermissionsController::class, 'destroy'])
         ->middleware('permission:permissions.delete')
         ->name('permissions.destroy');
+
 });

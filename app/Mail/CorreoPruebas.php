@@ -1,22 +1,26 @@
 <?php
-
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class CorreoPruebas extends Mailable
 {
     use Queueable, SerializesModels;
 
-     public function build()
+    public string $tokenUrl;
+
+    public function __construct($tokenUrl)
     {
-        return $this->subject('Correo desde el sistema')
-                    ->view('emails.prueba');
+        $this->tokenUrl = $tokenUrl;
     }
-    
+
+    public function build()
+    {
+        return $this
+            ->subject('Activación de cuenta')
+            ->view('emails.prueba');
+    }
 }
+

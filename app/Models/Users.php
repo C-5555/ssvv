@@ -18,7 +18,8 @@ class Users extends Authenticatable
         protected $primaryKey = 'id';
         protected $fillable = [
             'rfc',
-            'name'                                                                                                                                                                                                                                                                                                                                                                                         
+            'name',
+            'email_verified_at'                                                                                                                                                                                                                                                                                                                                                                                         
         
         ];
 
@@ -44,6 +45,14 @@ class Users extends Authenticatable
     {
         return $this->hasMany(Historial::class, 'id_historial');
     }
+
+  
+    public function emailTokens()
+    {
+        return $this->hasMany(EmailToken::class, 'id_user');
+    }
+
+
 
     /*public function ordenesExpedientes(){
         return $this->hasMany('App\OrdenExpediente','anio');

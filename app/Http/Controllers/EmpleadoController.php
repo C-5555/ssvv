@@ -6,8 +6,12 @@ use App\Models\Empleado;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage; 
 use Illuminate\Support\Facades\Crypt;
-use App\Models\Users;
+use App\Models\Users; 
 use App\Mail\CorreoPruebas;
+use Illuminate\Support\Facades\URL;
+use App\Models\EmailToken;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -82,6 +86,7 @@ class EmpleadoController extends Controller
         $user->rfc = $request->rfc;
         $user->password = Hash::make($request->password);
         $user->name = $request->nickname;
+        $user->email_verified_at = $request->email_verified_at;
         $user->save();
 
         // Asignar rol
@@ -99,12 +104,28 @@ class EmpleadoController extends Controller
         $datos_empleado->email = $request->email;
         $datos_empleado->status = true;
         $datos_empleado->save();
-        try {
-            Mail::to($datos_empleado->email)
-                ->send(new CorreoPruebas());
-        } catch (\Exception $e) {
-        }
 
+        $token = Str::random(64);
+        EmailToken::create([
+            'id_user' => $user->id,
+            'token' => $token,
+            'expires_at' => now()->addMinutes(30),
+        ]);
+
+        $tokenUrl = URL::temporarySignedRoute(
+            'emails.prueba',
+            now()->addMinutes(30),
+            [
+                'user' => $user->id,
+                'token' => $token
+            ]
+        );
+
+
+        Mail::to($datos_empleado->email)
+            ->send(new CorreoPruebas($tokenUrl));
+
+        
 
         if ($request->ajax()) {
             return response()->json([

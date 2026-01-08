@@ -89,6 +89,12 @@ class AuthController extends Controller
         'redirect' => route('ssvv.listadatos')
     ]);
 }
+    public function resetPassword (Request $request)
+    {
+         $request->validate([
+        'rfc' => 'required', ]);
+
+    }
 
     public function logout(Request $request)
     {
@@ -99,4 +105,12 @@ class AuthController extends Controller
 
         return redirect('ssvv/login');
     }
+
+        public function emailPrueba(Request $request, $user)
+    {
+        $user = Users::findOrFail($user);
+
+        return 'Token válido  Usuario ID: ' . $user->id;
+    }
+
 }
