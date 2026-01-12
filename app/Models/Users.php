@@ -62,5 +62,3 @@ class Users extends Authenticatable
         return $this->hasMany('App\MetodoSugerenciaTipoOrdenAnio','id_anio'); */
 }
 
-
- 

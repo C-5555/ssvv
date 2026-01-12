@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('email_tokens', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('id_user')->constrained()->cascadeOnDelete();
         $table->string('token')->unique();
         $table->timestamp('expires_at');
         $table->boolean('used')->default(false);
