@@ -51,6 +51,7 @@ class Users extends Authenticatable
     {
         return $this->hasMany(EmailToken::class, 'id_user');
     }
+    
 
 
 

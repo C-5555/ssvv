@@ -7,7 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\EmailController;
-
+use App\Http\Controllers\ActasController;
 
 Route::get('ssvv/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
@@ -32,11 +32,20 @@ Route::middleware(['auth', 'empleado.activo'])->group(function () {
     Route::get('/ssvv/viaticos', fn () => view('dashboards.viaticos'));
     Route::get('/ssvv/vacaciones', fn () => view('dashboards.vacaciones'));
     Route::get('/ssvv/solicitudes', fn () => view('dashboards.solicitudes'));
+    Route::get('/ssvv/formActas', fn () => view('dashboards.formActas'))
+        ->name('actas.form');
+    Route::post('/ssvv/actas', [ActasController::class, 'store'])
+        ->name('actas.store');
+    Route::get('/ssvv/actas', fn () => view('dashboards.actas'))
+    ->name('dashboards.actas');
+
+
 
     Route::get('/ssvv/listadatos', [EmpleadoController::class, 'index'])
         ->name('ssvv.listadatos');
     Route::get('ssvv/lista', function () { return view('dashboards.listaUsuario'); });
-
+    
+    
     Route::get('ssvv/roles', function () { return view('dashboards.listaRoles'); });
     
     Route::get('/ssvv/create', [EmpleadoController::class, 'create'])
