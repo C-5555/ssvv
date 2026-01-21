@@ -28,18 +28,33 @@ $(document).ready(function () {
             {
                 data: 'status',
                 render: function (data) {
-                    return data === 'Activo' || data === true ?
-                        '<span class="badge bg-success">✓ Activo</span>' :
-                        '<span class="badge bg-danger">✗ Inactivo</span>';
+                    if (data === 'activo') {
+                        return '<span class="badge bg-success">✓ Activo</span>';
+                    }
+
+                    if (data === 'pendiente') {
+                        return '<span class="badge bg-warning text-dark">⏳ Pendiente</span>';
+                    }
+
+                    return '<span class="badge bg-danger">✗ Inactivo</span>';
                 }
             },
 
             {
                 data: 'id',
                 render: function (data, type, row) {
-                    var isActive = row.status === 'Activo';
+                    var isActive = row.status === 'activo';
+                    var isPendiente = row.status === 'pendiente';
+
                     var buttonText = isActive ? 'Desactivar' : 'Activar';
                     var buttonClass = isActive ? 'btn-danger' : 'btn-success';
+
+                    if (isPendiente) {
+                        buttonText = 'Pendiente';
+                        buttonClass = 'btn-warning disabled';
+                    }
+
+
                     var encryptedId = encodeURIComponent(data);
 
 
@@ -61,12 +76,12 @@ $(document).ready(function () {
                             Editar
                         </button>
                         
-                        <button class="btn ${buttonClass} cambio-status" 
-                                data-id="${data}" 
-                                data-id-raw="${row.id_raw}"
-                                data-status="${isActive}">
-                                ${buttonText}
-                        </button>       
+                        <button class="btn ${buttonClass} cambio-status"
+                                data-id="${data}"
+                                data-status="${isActive}"
+                                ${isPendiente ? 'disabled' : ''}>
+                            ${buttonText}
+                        </button>
                     </div>
                     `;
                 }
@@ -74,6 +89,8 @@ $(document).ready(function () {
         ],
     });
     $('#tablaDatosUsuarios').on('click', '.cambio-status', function () {
+
+
         var button = $(this);
         var encryptedId = button.data('id');
         var currentStatus = button.data('status');
@@ -112,19 +129,31 @@ function cambioUserStatus(encryptedId, button, action) {
         },
 
         success: function (response) {
-
             $('#tablaDatosUsuarios').DataTable().ajax.reload(null, false);
+
+            if (response.estado === 'pendiente') {
+                Swal.fire({
+                    icon: "info",
+                    title: "Pendiente de firma",
+                    text: response.mensaje,
+                    confirmButtonText: "Entendido"
+                }).then(() => {
+                    $('#tablaDatosUsuarios').DataTable().ajax.reload(null, false);
+                });
+                return;
+            }
 
             Swal.fire({
                 icon: "success",
                 title: `Empleado ${action}do correctamente`,
-                text: response.mensaje || "El cambio se realizó con éxito.",
+                text: response.mensaje,
                 timer: 2000,
                 showConfirmButton: false
             });
 
             button.prop('disabled', false);
         },
+
 
         error: function () {
             Swal.fire({

@@ -15,11 +15,13 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\ActasController;
 
 class EmpleadoController extends Controller
 { 
     public function getEmpleado()
     {
+        $token = env('TOKEN_ACTAS');
         $empleado = Empleado::select('id', 'id_user', 'nombre', 'apellido_paterno', 'apellido_materno', 'id_area', 'puesto', 'fecha_ingreso', 'email', 'status')
             ->get()
             ->map(function ($empleado) {
@@ -31,18 +33,18 @@ class EmpleadoController extends Controller
                     'nombre' => $empleado->nombre,
                     'apellido_paterno' => $empleado->apellido_paterno,
                     'apellido_materno' =>$empleado->apellido_materno,
-                    'id_area' => $empleado->id_area,
+                    'id_area' => $empleado->area->nombre,
                     'puesto' => $empleado->puesto,
                     'fecha_ingreso' => $empleado->fecha_ingreso,
                     'email' => $empleado->email,
-                    'status' => $empleado->status ? 'Activo' : 'Inactivo',
+                    'status' => $empleado->status
                 ];
             });
 
       
-        return response()->json(['data' => $empleado]);
+        return response()->json(['data' => $empleado, 'token' => $token]);
     }
-
+    
      public function permisos($encryptedId)
      {
         $id = Crypt::decryptString($encryptedId);
@@ -102,7 +104,7 @@ class EmpleadoController extends Controller
             $datos_empleado->puesto = $request->puesto;
             $datos_empleado->fecha_ingreso = $request->fecha_ingreso;
             $datos_empleado->email = $request->email;
-            $datos_empleado->status = true;
+            $datos_empleado->status = false;
             $datos_empleado->save();
 
             $token = Str::random(64);
@@ -202,37 +204,54 @@ class EmpleadoController extends Controller
 
     public function destroy($encryptedId)
     {
-    try {
-        $id = Crypt::decryptString($encryptedId);
-        
-        $empleado = Empleado::findOrFail($id);
-        
-        $empleado->status = !$empleado->status;
-        $empleado->save();
-        
-        $mensaje = $empleado->status ? 
-            'Empleado activado correctamente' : 
-            'Empleado desactivado correctamente';
+        try {
+            $token = env('TOKEN_ACTAS');
+            $id = Crypt::decryptString($encryptedId);
+            $empleado = Empleado::findOrFail($id);
 
-        if (request()->ajax()) {
+            if ($empleado->status === 'pendiente') {
+
+                $response = Http::withToken($token)->get(
+                    'https://api.finanzas.cdmx.gob.mx/actas/estado',
+                    [
+                        'rfc' => $empleado->user->rfc,
+                        'email' => $empleado->email
+                    ]
+                );
+
+                if (!$response->successful() || !$response->json('firmada')) {
+                    return response()->json([
+                        'success' => false,
+                        'estado' => 'pendiente',
+                        'mensaje' => 'El empleado debe firmar el acta enviada a su correo.'
+                    ], 409);
+                }
+
+                // si ya firmó → activar
+                $empleado->status = 'activo';
+            }
+            elseif ($empleado->status === 'activo') {
+                $empleado->status = 'inactivo';
+            }
+            else {
+                $empleado->status = 'activo';
+            }
+
+            $empleado->save();
+
             return response()->json([
                 'success' => true,
-                'mensaje' => $mensaje,
+                'estado' => 'ok',
+                'mensaje' => 'Estado actualizado correctamente',
                 'nuevo_status' => $empleado->status
             ]);
-        }
-        
-        return redirect('ssvv/lista')->with('mensaje', $mensaje);
-        
+
         } catch (\Exception $e) {
-            if (request()->ajax()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Error al actualizar el estado: ' . $e->getMessage()
-                ], 500);
-            }
-        
-        return redirect('ssvv/lista')->with('error', 'Error al actualizar el estado');
+            return response()->json([
+                'success' => false,
+                'mensaje' => 'Error al actualizar el estado'
+            ], 500);
         }
     }
+
 }

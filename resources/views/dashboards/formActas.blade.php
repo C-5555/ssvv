@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="nombreCompleto"> Nombre Completo</label>
-                        <input type="text" class="form-control form-control-lg" id="nombreCompleto" name="nombreCompleto" value="{{ old('nombreCompleto') }}" required>
+                        <input type="text" class="form-control form-control-lg" id="nombreCompleto" name="nombreCompleto" value="{{ old('nombreCompleto', Auth::user()->name) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="claveTContratacion"> Clave Contratación</label>
@@ -22,23 +22,23 @@
                     
                     <div class="col-md-6 mb-3">
                         <label for="areaAdscripcion"> Área Adscripción</label>
-                        <input type="text" class="form-control" name="areaAdscripcion" id="areaAdscripcion" value="{{ old('areaAdscripcion') }}" required>
+                        <input type="text" class="form-control" name="areaAdscripcion" id="areaAdscripcion" value="{{ old('areaAdscripcion', Auth::user()->empleado->area->nombre) }}" required>
                         </div>
                     <div class="col-md-6 mb-3"> 
                         <label for="rfc"> RFC</label>
-                        <input type="text" class="form-control form-control-lg" id="rfc" name="rfc" value="{{ old('rfc') }}" required>
+                        <input type="text" class="form-control form-control-lg" id="rfc" name="rfc" value="{{ old('rfc', Auth::user()->rfc) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="email"> Email </label>
-                        <input type="text" class="form-control form-control-lg" id="email" name="email" value="{{ old('email') }}" required>
+                        <input type="text" class="form-control form-control-lg" id="email" name="email" value="{{ old('email', Auth::user()->empleado->email) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="perfil" >Perfil</label>
-                        <input type="text" class="form-control form-control-lg" id="perfil" name="perfil" value="{{ old('perfil') }}" required>
+                        <input type="text" class="form-control form-control-lg" id="perfil" name="perfil" value="{{ old('perfil', Auth::user()->name ) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="cargo"> Cargo </label>
-                        <input type="text" class="form-control form-control-lg" id="cargo" name="cargo" value="{{ old('cargo') }}" required>
+                        <input type="text" class="form-control form-control-lg" id="cargo" name="cargo" value="{{ old('cargo', Auth::user()->empleado->puesto) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="claveTSolicitud"> Clave de Solicitud</label>
